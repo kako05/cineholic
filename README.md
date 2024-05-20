@@ -17,7 +17,10 @@ https://cineholic.onrender.com
 
 # 利用方法
 - 検索はサインインなしで利用可能
+- ひらがな、カタカナ、漢字、英字から検索可能
+- 作品をクリックすると作品の詳細が見られる
 - サインインするとマイペ-ジ、レビュー投稿、お気に入り等の機能が利用可能
+
 
 # アプリ開発の背景
 - 自分が次に仕事一緒にするスタッフの過去作を見る時に
@@ -27,7 +30,16 @@ https://cineholic.onrender.com
   他にどんな作品に携わっているんだろう話している場面を何度か見た
 - 検索方法がなくて諦めている人がいる現状から、アプリ開発をする意義を感じた
 
-# テーブル設計
+# UIデザイン
+
+<img width="639" alt="シネホリック" src="https://github.com/kako05/cineholic/assets/167449348/fcce2766-23a7-485a-957d-40fdd0833aac">
+
+
+# ER図
+
+![cineholic](https://github.com/kako05/cineholic/assets/167449348/11d76e8a-5584-43a5-ba50-e906bfbcc554)
+
+
 
 ## users テーブル
 
@@ -53,8 +65,6 @@ https://cineholic.onrender.com
 | ----------- | ---------- | ------------------------------ |
 | title       | string     | null: false                    |
 | text        | text       | null: false                    |
-| genre_id    | integer    | null: false                    |
-| release     | string     | null: false                    |
 | user        | references | null: false, foreign_key: true |
 
 ### Association
