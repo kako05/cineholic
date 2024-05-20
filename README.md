@@ -32,7 +32,7 @@ https://cineholic.onrender.com
 
 # UIデザイン
 
-<img width="639" alt="シネホリック" src="https://github.com/kako05/cineholic/assets/167449348/fcce2766-23a7-485a-957d-40fdd0833aac">
+<img width="633" alt="シネホリック" src="https://github.com/kako05/cineholic/assets/167449348/4f237d27-3bfb-4f20-8959-6ebf321a6e59">
 
 
 # ER図
