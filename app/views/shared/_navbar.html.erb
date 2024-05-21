@@ -1,0 +1,23 @@
+<div class="navbar">
+  <div class="logo"><%= link_to "シネホリック", "#" %></div>
+  <div class="menu" id="menu">
+    <span><%= image_tag "menu.png" %></span>
+    <ul class="lists hidden" id="pull-down">
+      <li class="top-list"><%= link_to "上映作品", "#" %></li>
+      <li class="second-list"><%= link_to "マイページ", "#" %></li>
+      <li class="third-list"><%= link_to "サインイン", "#" %></li>
+      <li class="fourth-list"><%= link_to "ログイン", "#" %></li>
+      <li class="fifth-list"><%= link_to "ログアウト", "#" %></li>
+      <li class="dropdown">
+        <div class="dropdown-content">
+          <form class="search-form" action="#" method="get">
+            <input type="text" placeholder="keyword" name="q">
+            <button type="submit">GO</button>
+          </form>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<%= javascript_importmap_tags%>
