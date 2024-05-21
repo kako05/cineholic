@@ -1,0 +1,101 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 90px;
+  padding: 0 60px 0 30px;
+  background-color: #920505;
+}
+
+.logo {
+  font-size: 30px;  
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.logo a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.menu {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.menu span {
+  cursor: pointer;
+}
+
+.lists {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #444;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  display: none;
+  flex-direction: column;
+}
+
+.lists li {
+  padding: 10px;
+  border-bottom: 1px solid #555;
+}
+
+.lists li a {
+  color: white;
+  text-decoration: none;
+}
+
+.lists li a:hover {
+  background-color: #555;
+}
+
+.dropdown .dropdown-content {
+  flex-direction: column;
+  background-color: #444;
+  padding: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+}
+
+.search-form input {
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: white;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  background-color: #555;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #666;
+}
+
+.hidden {
+  display: none;
+}
+
+.menu:hover .lists {
+  display: flex;
+}

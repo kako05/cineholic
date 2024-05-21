@@ -1,0 +1,17 @@
+<%= render "shared/navbar" %>
+<div class="main">
+  <div class="curtain">
+    <%= image_tag "curtain.jpg", class: "curtain-image" %>
+    <div class="contents">
+      <div class="top-content">
+        <%# <%= form_with(url: search_tweets_path, local: true, method: :get, class: "search-form") do |form| %>
+          <%# <%= form.text_field :keyword, placeholder: "search", class: "search-input" %>
+          <%# <%= form.submit "GO", class: "search-btn" %>
+        <%# <% end %>
+      </div>
+      <div class="bottom-content">
+        <%= link_to "ENTER", "#", class: "enter-buttin" %>
+      </div>
+    </div>
+  </div>
+</div>
