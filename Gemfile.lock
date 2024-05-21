@@ -70,16 +70,10 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
-    autoprefixer-rails (10.4.16.0)
-      execjs (~> 2)
     bcrypt (3.1.20)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
-    bootstrap (5.2.3)
-      autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 2.11.6, < 3)
-      sassc-rails (>= 2.0.0)
     builder (3.2.4)
     capybara (3.40.0)
       addressable
@@ -105,7 +99,6 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     erubi (1.12.0)
-    execjs (2.9.1)
     factory_bot (6.4.6)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
@@ -168,7 +161,6 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.6)
-    popper_js (2.11.8)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -300,7 +292,6 @@ PLATFORMS
 DEPENDENCIES
   active_hash
   bootsnap
-  bootstrap (~> 5.2.3)
   capybara
   debug
   devise
@@ -317,6 +308,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.0)
   rspec-rails
+  sassc-rails
   selenium-webdriver
   sprockets-rails
   stimulus-rails
