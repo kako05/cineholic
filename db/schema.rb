@@ -13,21 +13,6 @@
 ActiveRecord::Schema[7.0].define(version: 2024_05_22_032958) do
   create_table "films", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
-    t.text "text"
-    t.datetime "release"
-    t.string "firstcast"
-    t.string "secondcast"
-    t.string "thridcast"
-    t.string "fourthrcast"
-    t.string "fifthcast"
-    t.string "director"
-    t.string "camera"
-    t.string "art"
-    t.string "sound"
-    t.string "producer"
-    t.string "crew"
-    t.string "secondcrew"
-    t.string "thridcrew"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
