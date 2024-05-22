@@ -1,0 +1,110 @@
+*hina-mincho-regular {
+  font-family: "Hina Mincho", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.sign-up, .log-in {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  background-color: #620606;
+}
+
+.container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px black;
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 8px;
+}
+
+.field label {
+  display: block;
+  font-weight: bold;
+}
+
+.field input {
+  width: calc(100% - 22px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.field em {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.field.remember-me {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+  align-items: center;
+}
+
+.field.remember-me input[type="checkbox"] {
+  margin-right: 20px;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.actions input[type="submit"] {
+  padding: 8px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #620606;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.actions input[type="submit"]:hover {
+  color: #ffffff;
+  background-color: #620606;
+}
+
+.actions a {
+  display: inline-block;
+  padding: 8px 12px;
+  margin-right: 10px;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #620606;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.actions a:hover {
+  color: #ffffff;
+  background-color: #620606;
+}
+
+.error_messages {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+#error_explanation {
+  font-size: 10px;
+}
