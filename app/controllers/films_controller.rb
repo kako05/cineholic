@@ -1,6 +1,6 @@
 class FilmsController < ApplicationController
-  require 'nokogiri'
-  require 'open-uri'
+  # require 'nokogiri'
+  # require 'open-uri'
 
   def index
   end
