@@ -2,7 +2,7 @@
   <div class="container">
     <h2>アカウントの編集</h2>
     <%= form_with model: current_user, local: true do |f|%>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= render "devise/shared/error_messages", resource: current_user %>
 
       <div class='field'>
         <%= f.label :nickname%><br />
