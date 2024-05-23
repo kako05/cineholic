@@ -1,7 +1,9 @@
 <%= render "shared/navbar" %>
 <div class="main">
   <div class="mypages">
-
+    <div class="back">
+    <%= image_tag "filmback.png", class: "filmback-image" %>
+    </div>
     <div class="left-page">
       <div class="page-top">
         <div class="my-name">
@@ -9,7 +11,7 @@
         </div>
         <div class="my-edit">
           <%= link_to(edit_user_path(current_user)) do %>
-            <%= image_tag "画像.png" ,size: '50x50' ,class: "icon"%>
+            <%= image_tag "icon.png" ,size: '300x300' ,class: "icon-image"%>
           <% end %>
         </div>
       </div>
