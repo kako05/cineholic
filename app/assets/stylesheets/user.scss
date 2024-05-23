@@ -102,3 +102,70 @@ h2 {
 #error_explanation {
   font-size: 10px;
 }
+
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+.mypages {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back {
+  position: absolute;
+  width: 66.667%;
+  z-index: -1;
+}
+
+.filmback-image {
+  width: 100%;
+}
+
+.left-page {
+  width: 33.333%;
+  padding: 20px;
+}
+
+.page-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-name {
+  font-size: 18px;
+}
+
+.my-edit {
+  margin-right: 20px;
+}
+
+.page-bottom {
+}
+
+.right-page {
+  width: 66.667%;
+  padding: 20px;
+}
+
+.my-comments {
+}
+
+.my-comment {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+}
+
+.commentarea {
+  padding-left: 20px;
+}
+
+.comment-title {
+}
+
+.comment-text {
+}
