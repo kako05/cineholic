@@ -18,8 +18,8 @@
 
 .filmback {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 180vw;
+  height: 120vh;
   background-image: url('<%= image_path("filmback.png") %>');
   background-size: cover;
   background-position: center;
