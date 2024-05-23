@@ -1,0 +1,38 @@
+<%= render "shared/navbar" %>
+<div class="main">
+  <div class="mypages">
+
+    <div class="left-page">
+      <div class="page-top">
+        <div class="my-name">
+          <%= link_to "#{current_user.nickname}", user_path(current_user)%>
+        </div>
+        <div class="my-edit">
+          <%= link_to(edit_user_path(current_user)) do %>
+            <%= image_tag "画像.png" ,size: '50x50' ,class: "icon"%>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="page-bottom">
+        <div class="like-lists">
+          <%# each.doでならべる %>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-page">
+      <div class="my-comments">
+        <%# each.doで並べる %>
+        <div class="my-comment">
+          <div class="image"></div>
+          <div class="commentarea">
+            <div class="comment-title"></div>
+            <div class="comment-text"></div>
+          </div>
+        </div>
+        <%# <% end%>
+      </div>
+    </div>
+  </div>
+</div>
