@@ -3,9 +3,9 @@
   <div class="filmback">
     <%= image_tag "filmback.png", class: "filmback-image" %>
     <div class="shows">
-    <% @films.each do |film| %>
-      <%= render partial: "film", locals: { film: film } %>
-    <% end %>
+      <% @films.each do |film| %>
+        <%= render partial: "film", locals: { film: film } %>
+      <% end %>
     </div>
   </div>
 </div>

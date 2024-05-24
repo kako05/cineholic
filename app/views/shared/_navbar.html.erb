@@ -6,7 +6,7 @@
       <li class="top-list"><%= link_to "上映作品", "#" %></li>
       <% if user_signed_in? %>
       <li class="second-list"><%= link_to "マイページ", user_path(current_user) %></li>
-      <li class="third-list"><%= link_to "ログアウト", destroy_user_session_path, data: {turbo_method: :delete} %></li>
+      <li class="third-list"><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }%></li>
       <% else %>
       <li class="fourth-list"><%= link_to "サインイン", new_user_registration_path %></li>
       <li class="fifth-list"><%= link_to "ログイン", new_user_session_path %></li>
