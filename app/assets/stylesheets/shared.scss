@@ -19,7 +19,7 @@
   text-decoration: none;
 }
 .title-icon{
-  width: 100px;
+  width: 200px;
   height: auto; 
 }
 .menu {
@@ -27,7 +27,10 @@
   margin: 0;
   padding: 0;
 }
-
+.menu img {
+  width: 42px;
+  height: auto;
+}
 .menu span {
   cursor: pointer;
 }
