@@ -46,16 +46,6 @@
   background-color: #2a2828;
   color: #ffffff;
 }
-.filmback {
-  position: relative;
-  width: 180vw;
-  height: 120vh;
-  background-image: url('<%= image_path("filmback.png") %>');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 1;
-}
 
 .contents {
   position: absolute;
@@ -76,4 +66,26 @@
 
 .bottom-content a {
   text-decoration: none;
+}
+
+.filmline-left, .filmline-right {
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 100%;
+}
+
+.filmline-left {
+  left: 0;
+  background: url('/assets/filmline.png') repeat-y;
+  background-size: contain;
+}
+
+.filmline-right {
+  right: 0;
+  background: url('/assets/filmline.png') repeat-y;
+  background-size: contain;
+}
+
+.shows {
 }

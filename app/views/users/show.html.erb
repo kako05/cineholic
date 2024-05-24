@@ -5,11 +5,11 @@
     <div class="left-page">
       <div class="page-top">
         <div class="my-name">
-          <%= link_to "#{current_user.nickname}", user_path(current_user)%>
+          <%= current_user.nickname %>
         </div>
         <div class="my-edit">
           <%= link_to(edit_user_path(current_user)) do %>
-            <%= image_tag "icon.png" ,size: '100x100' ,class: "icon"%>
+            <%= image_tag "icon.png" ,size: '50x50' ,class: "icon"%>
           <% end %>
         </div>
       </div>
