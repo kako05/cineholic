@@ -104,52 +104,58 @@ h2 {
 }
 
 .main {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
 }
 
 .mypages {
   display: flex;
-  justify-content: flex-end;
-}
-
-.back {
-  position: absolute;
-  width: 66.667%;
-  z-index: -1;
-}
-
-.filmback-image {
   width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .left-page {
-  width: 33.333%;
-  padding: 20px;
+  width: 34%;
+  padding: 30px;
+  background: url('/assets/filmline.png') repeat-y right center;
+  background-size: 50px auto;
+  z-index: 2;
 }
 
 .page-top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .my-name {
-  font-size: 18px;
+  font-size: 30px;
+  margin-left: 10px;
 }
 
 .my-edit {
-  margin-right: 20px;
+  margin-right: 50px;
 }
 
+
 .page-bottom {
+  
 }
 
 .right-page {
-  width: 66.667%;
+  width: 66%;
   padding: 20px;
+  background: url('/assets/filmline.png') repeat-y right center;
+  background-size: 50px auto;
+  z-index: 1;
+  position: relative;
 }
 
 .my-comments {
+  position: relative;
+  z-index: 2;
 }
 
 .my-comment {
@@ -158,13 +164,15 @@ h2 {
 }
 
 .image {
+  
 }
 
 .commentarea {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 .comment-title {
+  
 }
 
 .comment-text {
