@@ -2,19 +2,14 @@
 <div class="main">
   <div class="filmback">
     <%= image_tag "filmback.png", class: "filmback-image" %>
+    <% if @films.present? %>
     <div class="shows">
-      <% if @films.present? %>
-  <div class="shows">
-    <% @films.each do |film| %>
-      <%= render partial: "film", locals: { film: film } %>
-    <% end %>
-  </div>
-<% else %>
-  <p>映画が見つかりませんでした。</p>
-<% end %>
       <% @films.each do |film| %>
         <%= render partial: "film", locals: { film: film } %>
       <% end %>
+    <% else %>
+      <p>映画が見つかりませんでした。</p>
     </div>
+    <% end %>
   </div>
 </div>

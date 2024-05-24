@@ -1,17 +1,19 @@
 <%= render "shared/navbar" %>
 <div class="main">
   <div class="mypages">
+
     <div class="left-page">
       <div class="page-top">
         <div class="my-name">
-          <%= link_to "#{current_user.nickname}", user_path(current_user) %>
+          <%= link_to "#{current_user.nickname}", user_path(current_user)%>
         </div>
         <div class="my-edit">
           <%= link_to(edit_user_path(current_user)) do %>
-            <%= image_tag "icon.png", size: '50x50', class: "icon-image" %>
+            <%= image_tag "icon.png" ,size: '100x100' ,class: "icon"%>
           <% end %>
         </div>
       </div>
+
       <div class="page-bottom">
         <div class="like-lists">
           <%# each.doでならべる %>
@@ -29,7 +31,7 @@
             <div class="comment-text"></div>
           </div>
         </div>
-        <%# <% end %>
+        <%# <% end%>
       </div>
     </div>
   </div>
