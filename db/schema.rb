@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_143617) do
 
   create_table "staffs", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
+    t.string "role"
     t.bigint "film_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
