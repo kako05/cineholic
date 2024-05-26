@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_24_143617) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_26_083011) do
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,10 +41,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_143617) do
 
   create_table "casts", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
-    t.bigint "film_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["film_id"], name: "index_casts_on_film_id"
+  end
+
+  create_table "fil_staffts", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "film_id", null: false
+    t.bigint "staff_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["film_id"], name: "index_fil_staffts_on_film_id"
+    t.index ["staff_id"], name: "index_fil_staffts_on_staff_id"
+  end
+
+  create_table "film_casts", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "film_id", null: false
+    t.bigint "cast_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cast_id"], name: "index_film_casts_on_cast_id"
+    t.index ["film_id"], name: "index_film_casts_on_film_id"
   end
 
   create_table "films", charset: "utf8mb4", force: :cascade do |t|
@@ -60,10 +76,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_143617) do
   create_table "staffs", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "role"
-    t.bigint "film_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["film_id"], name: "index_staffs_on_film_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -81,6 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_24_143617) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "casts", "films"
-  add_foreign_key "staffs", "films"
+  add_foreign_key "fil_staffts", "films"
+  add_foreign_key "fil_staffts", "staffs"
+  add_foreign_key "film_casts", "casts"
+  add_foreign_key "film_casts", "films"
 end
