@@ -1,0 +1,28 @@
+<%= render "shared/navbar" %>
+<div class="main">
+  <div class="filmline-left"></div>
+  <div class="filmline-right"></div>
+
+  <%= render partial: "film", locals: { film: @film } do %>
+    <div class="staff-section">
+      <h3>スタッフ</h3>
+      <% @film.staffs.each do |staff| %>
+        <p><%= staff.name %>: <%= staff.role %></p>
+      <% end %>
+    </div>
+
+    <div class="cast-section">
+      <h3>キャスト</h3>
+      <% @film.casts.each do |cast| %>
+        <p><%= cast.name %>: <%= cast.role %></p>
+      <% end %>
+    </div>
+
+    <div class="production-section">
+      <h3>制作会社</h3>
+      <% @film.production_companies.each do |company| %>
+        <p><%= company.name %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

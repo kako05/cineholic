@@ -2,14 +2,12 @@
 <div class="main">
   <div class="filmline-left"></div>
   <div class="filmline-right"></div>
-    <% if @films.present? %>
-    <div class="shows">
-      <% @films.each do |film| %>
-        <%= render partial: "film", locals: { film: film } %>
-      <% end %>
-    <% else %>
-      <p>映画が見つかりませんでした。</p>
-    </div>
+
+  <div class="shows">
+    <% @films.each do |film| %>
+    <%= render "film" %>
     <% end %>
   </div>
+
+  <%= paginate @films %>
 </div>

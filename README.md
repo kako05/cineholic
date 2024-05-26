@@ -50,7 +50,6 @@ https://cineholic.onrender.com
 | encrypted_password | string | null: false               |
 
 
-
 ### Association
 
 - has_many :films, through: :comments
@@ -61,17 +60,81 @@ https://cineholic.onrender.com
 
 ## films テーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| title       | string     | null: false                    |
-| text        | text       | null: false                    |
-| user        | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| title            | string     | null: false                    |
+| description      | text       |                                |
+| release_year     | integer    |                                |
+| poster_image_url | string     |                                |
+| kink             | string     |                                |
+| user             | references | null: false, foreign_key: true |
+
 
 ### Association
 
 - has_many :users, through: :comments
 - has_many :likes
 - has_many :comments
+- has_many :casts, through: :film_casts
+- has_many :film_casts
+
+
+
+## casts テーブル
+
+| Column | Type       | Options       |
+| ------ | ---------- | ------------- |
+| name   | string     |               |
+
+
+### Association
+
+- has_many :films, through: :film_casts
+- has_many :film_casts
+
+
+
+## film_casts　テーブル
+
+| Column | Type       | Options              |
+| ------ | ---------- | -------------------- |
+| film   | references | foreign_key: true    |
+| cast   | references | foreign_key: true    |
+
+
+### Association
+
+- belongs_to :film
+- belongs_to :cast
+
+
+
+## staffs　テーブル
+
+| Column | Type       | Options       |
+| ------ | ---------- | ------------- |
+| name   | string     |               |
+| role   | string     |               |
+
+
+### Association
+
+- has_many :films, through: :film_staffs
+- has_many :film_staffs
+
+
+
+## film_staffs　テーブル
+
+| Column | Type       | Options              |
+| ------ | ---------- | -------------------- |
+| film   | string     |                      |
+| staff  | references | foreign_key: true    |
+
+### Association
+
+- belongs_to :film
+- belongs_to :cast
 
 
 

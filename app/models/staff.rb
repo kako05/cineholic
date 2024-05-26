@@ -1,5 +1,5 @@
 class Staff < ApplicationRecord
-  belongs_to :film
+  has_many :film_staffs
+  has_many :films, through: :film_staffs
 
-  validates :name, presence: true
 end

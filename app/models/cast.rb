@@ -1,5 +1,5 @@
 class Cast < ApplicationRecord
-  belongs_to :film
+  has_many :film_casts
+  has_many :films, through: :film_casts
 
-  validates :name, presence: true
 end

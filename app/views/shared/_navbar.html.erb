@@ -3,7 +3,7 @@
   <div class="menu" id="menu">
     <span><%= image_tag "menu.png" %></span>
     <ul class="lists hidden" id="pull-down">
-      <li class="top-list"><%= link_to "上映作品", "#" %></li>
+      <li class="top-list"><%= link_to "上映作品", showing_films_films_path %></li>
       <% if user_signed_in? %>
       <li class="second-list"><%= link_to "マイページ", user_path(current_user) %></li>
       <li class="third-list"><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }%></li>
@@ -13,7 +13,7 @@
       <% end %>
       <li class="dropdown">
         <div class="dropdown-content">
-          <form class="search-form" action="#" method="get">
+          <form class="search-form" action="search" method="get">
             <input type="text" placeholder="keyword" name="q">
             <button type="submit">GO</button>
           </form>

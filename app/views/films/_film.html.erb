@@ -1,28 +1,14 @@
 <div class="film">
   <div class="left-show">
-    <%= image_tag film[:poster], class: "poster-image" %>
+    <%= image_tag film.poster_image_url, class: "poster-image" %>
   </div>
   <div class="right-show">
     <div class="title-show">
-      <h2><%= film[:title] %></h2>
+      <h2><%= film.title %></h2>
+      <small class="prod_year">( <%= film.release_year %> )</small>
     </div>
     <div class="text-show">
-      <p><%= film[summary] %></p>
-    </div>
-  </div>
-</div>
-
-
-<div class="film">
-  <div class="left-show">
-    <%= image_tag film[:poster], class: "poster-image" %>
-  </div>
-  <div class="right-show">
-    <div class="title-show">
-      <h2><%= film[:title] %></h2>
-    </div>
-    <div class="text-show">
-      <p><%= film[:summary] %></p>
+      <p><%= film.description %></p>
     </div>
   </div>
 </div>
