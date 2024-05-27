@@ -11,22 +11,26 @@
 }
 
 .logo {
-  font-size: 30px;  
-  font-weight: bold;
-  color: #FFFFFF;
+  margin: 10px, 10px, 0, 20px;
 }
 
 .logo a {
   color: #FFFFFF;
   text-decoration: none;
 }
-
+.title-icon{
+  width: 200px;
+  height: auto; 
+}
 .menu {
   position: relative;
   margin: 0;
   padding: 0;
 }
-
+.menu img {
+  width: 42px;
+  height: auto;
+}
 .menu span {
   cursor: pointer;
 }

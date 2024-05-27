@@ -1,15 +1,13 @@
 <%= render "shared/navbar" %>
 <div class="main">
-  <div class="filmback">
-    <%= image_tag "filmback.png", class: "filmback-image" %>
-    <% if @films.present? %>
-    <div class="shows">
-      <% @films.each do |film| %>
-        <%= render partial: "film", locals: { film: film } %>
-      <% end %>
-    <% else %>
-      <p>映画が見つかりませんでした。</p>
-    </div>
+  <div class="filmline-left"></div>
+  <div class="filmline-right"></div>
+
+  <div class="shows">
+    <% @films.each do |film| %>
+    <%= render "film" %>
     <% end %>
   </div>
+
+  <%= paginate @films %>
 </div>
