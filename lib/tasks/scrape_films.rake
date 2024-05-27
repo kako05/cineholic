@@ -3,13 +3,13 @@ require "nokogiri"
 
 namespace :films do
   desc "Scrape and save latest films"
-  task scrape_300: :environment do
+  task scrape_6787: :environment do
     base_url = "http://jfdb.jp"
-    start_page = 1 # ページ1から開始
-    page_size = 300 # 1ページあたり300件を処理
+    start_page =40
+    page_size = 272
 
     loop do
-      index_url = "#{base_url}/search/title?ORDER=RELE_D&START=#{start_page}" # 公開日で降順に並べ替え
+      index_url = "#{base_url}/search/title?ORDER=RELE_D&PAGE=#{start_page}" # 公開日で降順に並べ替え
 
       begin
         # データを取得
@@ -19,11 +19,19 @@ namespace :films do
         return
       end
 
-      # 1ページあたりpage_size件を処理
+      # 1ページあたり300件を処理
       index_doc.css('.search-result-item').each_with_index do |item, i|
         break if i >= page_size
 
-        title = item.css('.list-title a').text.strip
+        # title = item.css('.list-title a').text.strip
+        title_element = item.css('.list-title a')
+        title = title_element.text.strip
+
+        # 公開年を取得
+        release_year = item.css('small.prod_year').text.strip.match(/\((\d+)\)/)[1].to_i
+
+        # タイトルから公開年を除去
+        title = title.gsub(/\s*\(\d{4}\)$/, '').strip
 
         # タイトルが空の場合はスキップ
         next if title.empty?
@@ -57,24 +65,46 @@ namespace :films do
         end
 
         # スタッフ情報を抽出して保存
-        staff_info = {}
         detail_doc.css('.title-detail h2').each do |heading|
-          # タイトルが「スタッフ」であるh2要素の次の兄弟要素のul内のli要素を取得
-          if heading.text.strip == "【スタッフ】"
+          case heading.text.strip
+          when "【監督】"
+            director_names = heading.next_element.css('a').map(&:text).map(&:strip)
+            director_names.each do |director_name|
+              director = Staff.find_or_create_by(name: director_name, role: "監督")
+              FilmStaff.find_or_create_by(film: film, staff: director)
+            end
+          when "【プロデューサー】"
+            producer_items = heading.next_element.css('li')
+            producer_items.each do |producer_item|
+              producer_name = producer_item.css('a').text.strip
+              role = "プロデューサー"
+              staff = Staff.find_or_create_by(name: producer_name, role: role)
+              FilmStaff.find_or_create_by(film: film, staff: staff)
+            end
+          when "【スタッフ】"
             staff_list = heading.next_element.css('li')
             staff_list.each do |staff_item|
               staff_name = staff_item.css('a').text.strip
-              role = staff_item.text.strip.split(/─|ー/)[1].strip
+              role = staff_item.css('span').text.strip.split(/─|ー/)[2].strip if staff_item.text.strip.split(/─|ー/).length > 2
 
               # 録音/音響および美術/美術監督の役割を統合
-              role = "録音・音響" if ["録音", "音響"].include?(role)
+              role = "録音" if ["録音", "音響"].include?(role)
               role = "美術" if ["美術", "美術監督"].include?(role)
               role = "衣装" if ["衣装", "衣裳", "スタイリスト"].include?(role)
-
-              staff = Staff.find_or_create_by(name: staff_name)
-              staff.update(role: role)
+        
+              staff = Staff.find_or_create_by(name: staff_name, role: role)
               FilmStaff.find_or_create_by(film: film, staff: staff)
             end
+          when "【製作会社】"
+            production = heading.next_element.text.strip
+            staff = Staff.find_or_create_by(production: production)
+            staff.update(production: production)
+            FilmStaff.find_or_create_by(film: film, staff: staff)
+          when "【公式サイト】"
+            official_site_url = heading.next_element.css('a').attr('href').value
+            staff = Staff.find_or_create_by(official_site: official_site_url)
+            staff.update(official_site: official_site_url)
+            FilmStaff.find_or_create_by(film: film, staff: staff)
           end
         end
 
