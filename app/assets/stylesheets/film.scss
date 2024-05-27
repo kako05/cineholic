@@ -68,24 +68,129 @@
   text-decoration: none;
 }
 
-.filmline-left, .filmline-right {
-  position: absolute;
+.showing-main {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  z-index: 1;
+  background-color: #f9f9f9;
+}
+
+.showing-main .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.showing-main .filmline-left, .showing-main .filmline-right {
+  position: relative;
   top: 0;
   width: 50px;
-  height: 100%;
-}
-
-.filmline-left {
-  left: 0;
   background: url('/assets/filmline.png') repeat-y;
   background-size: contain;
 }
 
-.filmline-right {
-  right: 0;
-  background: url('/assets/filmline.png') repeat-y;
-  background-size: contain;
+.showing-main .filmline-left {
+  margin-right: 10px;
 }
 
-.shows {
+.showing-main .filmline-right {
+  margin-left: 10px;
+}
+
+.showing-main .shows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.showing-main .film {
+  display: flex;
+  height: 160px;
+  background: #ebebeb;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 80%;
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.showing-main .film:hover {
+  transform: scale(1.05);
+}
+
+.showing-main .left-show {
+  flex: 1;
+  width: 130px;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center;
+  background-color: #070707;
+}
+
+.showing-main .poster-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.showing-main .right-show {
+  flex: 2;
+  padding: 20px;
+}
+
+.showing-main .title-show {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.showing-main .title-show h2 {
+  font-size: 25px;
+  margin: 0;
+}
+
+.showing-main .release-year {
+  font-size: 15px;
+  color: #4f4e4e;
+}
+
+.showing-main .text-show {
+  font-size: 15px;
+  margin-top: 25px;
+  color: #171717;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+}
+
+.page {
+  display: inline-block;
+  width: 30px; /* サークルの直径 */
+  height: 30px; /* サークルの直径 */
+  border-radius: 50%; /* サークルを描くための円形のボーダー */
+  color: #620606;
+  background-color: #ffffff; /* サークルの背景色 */
+  text-align: center; /* テキストを中央に配置 */
+  line-height: 30px; /* テキストの中央揃え */
+  margin-right: 10px; /* 右側の間隔 */
+}
+
+.page:hover {
+  background-color: #620606; /* ホバーしたときの背景色 */
+  color: #ffffff; /* ホバーしたときのテキスト色 */
+  cursor: pointer; /* カーソルをポインターに変更 */
 }

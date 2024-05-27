@@ -39,10 +39,11 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  background-color: #444;
+  background-color: #410e0e;
   position: absolute;
   top: 40px;
   right: 0;
+  left: auto;
   display: none;
   flex-direction: column;
   z-index: 20;
@@ -50,7 +51,6 @@
 
 .lists li {
   padding: 10px;
-  border-bottom: 1px solid #555;
 }
 
 .lists li a {
@@ -64,7 +64,7 @@
 
 .dropdown .dropdown-content {
   flex-direction: column;
-  background-color: #444;
+  background-color: #410e0e;
   padding: 10px;
 }
 
@@ -82,8 +82,8 @@
 .search-form input {
   padding: 5px;
   margin-right: 10px;
-  border: 1px solid #3b0303;
-  background-color: #333;
+  border: 1px solid #ffffff;
+  background-color: #410e0e;
   color: white;
 }
 

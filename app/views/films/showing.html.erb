@@ -1,13 +1,13 @@
 <%= render "shared/navbar" %>
-<div class="main">
+<div class="showing-main">
   <div class="filmline-left"></div>
-  <div class="filmline-right"></div>
-
-  <div class="shows">
-    <% @films.each do |film| %>
-    <%= render "film" %>
-    <% end %>
+  <div class="content">
+    <div class="shows">
+      <% @films.each do |film| %>
+        <%= render partial: "film", locals: { film: film } %>
+      <% end %>
+    </div>
+    <%= paginate @films %>
   </div>
-
-  <%= paginate @films %>
+  <div class="filmline-right"></div>
 </div>

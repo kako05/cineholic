@@ -3,6 +3,11 @@
 @import 'user';
 @import 'film';
 
+* {
+  font-family: "Hina Mincho", serif;
+}
+
+/* クラスにも適用 */
 .hina-mincho-regular {
   font-family: "Hina Mincho", serif;
   font-weight: 400;

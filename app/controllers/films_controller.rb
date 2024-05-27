@@ -6,7 +6,7 @@ class FilmsController < ApplicationController
   end
 
   def showing
-    @films = Film.order(release_date: :desc).page(params[:page]).per(10)
+    @films = Film.order(release_year: :desc).page(params[:page]).per(10)
   end
 
   def search

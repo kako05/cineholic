@@ -3,7 +3,22 @@
   <div class="filmline-left"></div>
   <div class="filmline-right"></div>
 
-  <%= render partial: "film", locals: { film: @film } do %>
+  <div class="film-detail">
+    <div class="film">
+      <div class="left-show">
+        <%= image_tag @film.poster_image_url, class: "poster-image" %>
+      </div>
+      <div class="right-show">
+        <div class="title-show">
+          <h2><%= @film.title %></h2>
+          <small class="prod_year">( <%= @film.release_year %> )</small>
+        </div>
+        <div class="text-show">
+          <p><%= @film.description %></p>
+        </div>
+      </div>
+    </div>
+
     <div class="staff-section">
       <h3>スタッフ</h3>
       <% @film.staffs.each do |staff| %>
@@ -24,5 +39,5 @@
         <p><%= company.name %></p>
       <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
