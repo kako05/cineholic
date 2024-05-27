@@ -3,7 +3,9 @@ class CreateStaffs < ActiveRecord::Migration[7.0]
     create_table :staffs do |t|
       t.string     :name
       t.string     :role
-      t.timestamps
+      t.string     :production
+      t.string     :official_site
+      t.timestamps 
     end
   end
 end
