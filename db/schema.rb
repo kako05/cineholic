@@ -11,13 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2024_05_26_083011) do
-  create_table "casts", charset: "utf8", force: :cascade do |t|
+  create_table "casts", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "film_casts", charset: "utf8", force: :cascade do |t|
+  create_table "film_casts", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "film_id", null: false
     t.bigint "cast_id"
     t.datetime "created_at", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_26_083011) do
     t.index ["film_id"], name: "index_film_casts_on_film_id"
   end
 
-  create_table "film_staffs", charset: "utf8", force: :cascade do |t|
+  create_table "film_staffs", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "film_id", null: false
     t.bigint "staff_id"
     t.datetime "created_at", null: false
@@ -35,27 +35,28 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_26_083011) do
     t.index ["staff_id"], name: "index_film_staffs_on_staff_id"
   end
 
-  create_table "films", charset: "utf8", force: :cascade do |t|
-    t.string "title"
+  create_table "films", charset: "utf8mb4", force: :cascade do |t|
+    t.text "title"
     t.text "description"
     t.integer "release_year"
     t.string "poster_image_url"
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_films_on_title", unique: true
+    t.index ["title"], name: "index_films_on_title", unique: true, length: 191
   end
 
-  create_table "staffs", charset: "utf8", force: :cascade do |t|
+  create_table "staffs", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "role"
-    t.string "production"
+    t.text "production", size: :medium
     t.string "official_site"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["production"], name: "index_staffs_on_production", length: 191
   end
 
-  create_table "users", charset: "utf8", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
