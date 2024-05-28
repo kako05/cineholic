@@ -3,7 +3,7 @@ class CreateFilms < ActiveRecord::Migration[7.0]
     create_table :films do |t|
       t.text     :title, limit: 65535
       t.text     :description
-      t.integer  :release_year
+      t.string   :release_date
       t.string   :poster_image_url
       t.string   :link
       t.timestamps
