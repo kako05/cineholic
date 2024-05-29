@@ -3,6 +3,12 @@ class FilmsController < ApplicationController
   require 'open-uri'
 
   def index
+    @q = Film.ransack(params[:q])
+    if params[:q].blank?
+      @films = Film.all
+    else
+      @films = @q.result(distinct: true)
+    end
   end
 
   def showing

@@ -3,9 +3,8 @@
   <div class="curtain">
     <%= image_tag "curtain.jpg", class: "curtain-image" %>
     <div class="contents">
-      <div class="top-content">
-        <%= form_with(url: search_films_films_path, local: true, method: :get, class: "main-search-form") do |form| %>
-          <%= form.text_field :keyword, placeholder: "search", class: "search-input" %>
+        <%= form_with(url: search_films_films_path, method: "get", local: true, class: "main-search-form") do |form| %>
+          <%= form.text_field :q_cont, placeholder: "Search", class: "search-input" %>
           <%= form.submit "GO", class: "search-btn" %>
         <% end %>
       </div>
