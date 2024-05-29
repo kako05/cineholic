@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def show
     @user = User.find(params[:id])
   end
@@ -9,7 +8,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-    redirect_to "#"
+      redirect_to '#'
     else
       render :edit, status: :unprocessable_entity
     end

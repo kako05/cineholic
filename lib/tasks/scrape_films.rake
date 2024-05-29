@@ -1,11 +1,11 @@
-require "open-uri"
-require "nokogiri"
+require 'open-uri'
+require 'nokogiri'
 
 namespace :films do
-  desc "Scrape and save latest films"
+  desc 'Scrape and save latest films'
   task scrape_6787: :environment do
-    base_url = "http://jfdb.jp"
-    start_page =20
+    base_url = 'http://jfdb.jp'
+    start_page = 20
     page_size = 272
 
     loop do
@@ -14,7 +14,7 @@ namespace :films do
       begin
         # データを取得
         index_doc = Nokogiri::HTML(URI.open(index_url))
-      rescue => e
+      rescue StandardError => e
         puts "インデックスページのスクレイピング中にエラーが発生しました: #{e.message}"
         return
       end
@@ -32,7 +32,7 @@ namespace :films do
         next if title.empty?
 
         # 映画レコードを検索または作成
-        film = Film.find_or_create_by(title: title)
+        film = Film.find_or_create_by(title:)
 
         description = item.css('.title-description').text.strip
         poster_image_url = item.css('.list-img-top img').attr('src').value
@@ -42,7 +42,7 @@ namespace :films do
         begin
           # 映画の詳細ページを取得
           detail_doc = Nokogiri::HTML(URI.open(film_url))
-        rescue => e
+        rescue StandardError => e
           puts "映画「#{title}」の詳細ページのスクレイピング中にエラーが発生しました: #{e.message}"
           next
         end
@@ -55,62 +55,61 @@ namespace :films do
 
         cast_names.each do |cast_name|
           cast = Cast.find_or_create_by(name: cast_name)
-          FilmCast.find_or_create_by(film: film, cast: cast)
+          FilmCast.find_or_create_by(film:, cast:)
         end
 
         # スタッフ情報を抽出して保存
         detail_doc.css('.title-detail h2').each do |heading|
           case heading.text.strip
-          when "【監督】"
+          when '【監督】'
             director_names = heading.next_element.css('a').map(&:text).map(&:strip)
             director_names.each do |director_name|
-              director = Trailer.find_or_create_by(name: director_name, role: "監督")
-              FilmTrailer.find_or_create_by(film: film, trailer: director)
+              director = Trailer.find_or_create_by(name: director_name, role: '監督')
+              FilmTrailer.find_or_create_by(film:, trailer: director)
             end
-          when "【プロデューサー】"
+          when '【プロデューサー】'
             producer_items = heading.next_element.css('li')
             producer_items.each do |producer_item|
               producer_name = producer_item.css('a').text.strip
-              role = "プロデューサー"
-              trailer = Trailer.find_or_create_by(name: producer_name, role: role)
-              FilmTrailer.find_or_create_by(film: film, trailer: trailer)
+              role = 'プロデューサー'
+              trailer = Trailer.find_or_create_by(name: producer_name, role:)
+              FilmTrailer.find_or_create_by(film:, trailer:)
             end
-          when "【スタッフ】"
+          when '【スタッフ】'
             trailer_list = heading.next_element.css('li')
             trailer_list.each do |trailer_item|
               trailer_name = trailer_item.css('a').text.strip
               role = trailer_item.css('span').text.strip.split(/─|ー/)[2].strip if trailer_item.text.strip.split(/─|ー/).length > 2
 
               # 録音/音響および美術/美術監督の役割を統合
-              role = "録音" if ["録音", "音響"].include?(role)
-              role = "美術" if ["美術", "美術監督"].include?(role)
-              role = "衣装" if ["衣装", "衣裳", "スタイリスト"].include?(role)
-        
-              trailer = Trailer.find_or_create_by(name: trailer_name, role: role)
-              FilmTrailer.find_or_create_by(film: film, trailer: trailer)
+              role = '録音' if %w[録音 音響].include?(role)
+              role = '美術' if %w[美術 美術監督].include?(role)
+              role = '衣装' if %w[衣装 衣裳 スタイリスト].include?(role)
+
+              trailer = Trailer.find_or_create_by(name: trailer_name, role:)
+              FilmTrailer.find_or_create_by(film:, trailer:)
             end
-          when "【製作会社】"
+          when '【製作会社】'
             production = heading.next_element.text.strip
-            trailer = Trailer.find_or_create_by(production: production)
-            FilmTrailer.find_or_create_by(film: film, trailer: trailer)
-          when "【公式サイト】"
+            trailer = Trailer.find_or_create_by(production:)
+            FilmTrailer.find_or_create_by(film:, trailer:)
+          when '【公式サイト】'
             official_site_url = heading.next_element.css('a').attr('href').value
             trailer = Trailer.find_or_create_by(official_site: official_site_url)
-            FilmTrailer.find_or_create_by(film: film, trailer: trailer)
-          when "【解説】"
+            FilmTrailer.find_or_create_by(film:, trailer:)
+          when '【解説】'
             text = heading.next_element.text.strip
-            trailer = Trailer.find_or_create_by(text: text)
-            FilmTrailer.find_or_create_by(film: film, trailer: trailer)
+            trailer = Trailer.find_or_create_by(text:)
+            FilmTrailer.find_or_create_by(film:, trailer:)
           end
         end
-        
 
         # 映画データを更新
         film.update(
-          description: description,
-          release_date: release_date,
-          poster_image_url: poster_image_url,
-          link: film_url,
+          description:,
+          release_date:,
+          poster_image_url:,
+          link: film_url
         )
       end
 
@@ -118,7 +117,7 @@ namespace :films do
       next_page_link = index_doc.css('.pagination a.next').first
       break unless next_page_link
 
-      start_page = next_page_link.attr("href").match(/START=(\d+)/)[1].to_i
+      start_page = next_page_link.attr('href').match(/START=(\d+)/)[1].to_i
     end
   end
 end
