@@ -5,7 +5,7 @@ namespace :films do
   desc 'Scrape and save latest films'
   task scrape_6787: :environment do
     base_url = 'http://jfdb.jp'
-    start_page = 20
+    start_page = 3
     page_size = 272
 
     loop do
