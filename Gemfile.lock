@@ -182,6 +182,7 @@ GEM
       net-protocol
     net-ssh (7.2.3)
     nio4r (2.7.3)
+    nkf (0.2.0)
     nokogiri (1.16.5-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.5-x86_64-linux)
@@ -362,6 +363,7 @@ DEPENDENCIES
   jbuilder
   kaminari
   mysql2 (~> 0.5)
+  nkf
   nokogiri
   pry-rails
   puma (~> 5.0)
