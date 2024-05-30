@@ -8,7 +8,7 @@
 - レビュー投稿
 
 # URL
-https://cineholic.onrender.com
+
 
 # テスト用アカウント
 - Basic認証ID :admin
@@ -37,7 +37,7 @@ https://cineholic.onrender.com
 
 # ER図
 
-![cineholic](https://github.com/kako05/cineholic/assets/167449348/11d76e8a-5584-43a5-ba50-e906bfbcc554)
+![cineholic](https://github.com/kako05/cineholic/assets/167449348/f3a50d4c-8cbc-4c5e-92c9-c625994b4341)
 
 
 
@@ -52,9 +52,10 @@ https://cineholic.onrender.com
 
 ### Association
 
-- has_many :films, through: :comments
 - has_many :likes
+- has_many :films, through: :likes
 - has_many :comments
+- has_many :films, through: :comments
 
 
 
@@ -64,10 +65,11 @@ https://cineholic.onrender.com
 | ---------------- | ---------- | ------------------------------ |
 | title            | string     | null: false                    |
 | description      | text       |                                |
-| release_year     | integer    |                                |
+| release_date     | string     |                                |
 | poster_image_url | string     |                                |
-| kink             | string     |                                |
-| user             | references | null: false, foreign_key: true |
+| link             | string     |                                |
+| comment          | references | null: false, foreign_key: true |
+| like             | references | null: false, foreign_key: true |
 
 
 ### Association
@@ -75,8 +77,10 @@ https://cineholic.onrender.com
 - has_many :users, through: :comments
 - has_many :likes
 - has_many :comments
-- has_many :casts, through: :film_casts
 - has_many :film_casts
+- has_many :casts, through: :film_casts
+- has_many :film_trailers
+- has_many :trailers, through: :film_trailers
 
 
 
@@ -111,10 +115,13 @@ https://cineholic.onrender.com
 
 ## staffs　テーブル
 
-| Column | Type       | Options       |
-| ------ | ---------- | ------------- |
-| name   | string     |               |
-| role   | string     |               |
+| Column        | Type     | Options       |
+| ------------- | -------- | ------------- |
+| name          | string   |               |
+| role          | string   |               |
+| production    | string   |               |
+| official_site | string   |               |
+| text          | text     |               |
 
 
 ### Association
@@ -126,10 +133,10 @@ https://cineholic.onrender.com
 
 ## film_staffs　テーブル
 
-| Column | Type       | Options              |
-| ------ | ---------- | -------------------- |
-| film   | string     |                      |
-| staff  | references | foreign_key: true    |
+| Column  | Type       | Options              |
+| ------- | ---------- | -------------------- |
+| film    | string     |                      |
+| trailer | references | foreign_key: true    |
 
 ### Association
 
@@ -170,17 +177,16 @@ https://cineholic.onrender.com
 
 ## 開発環境
 # フロントエンド
-- HTML,CSS,JavaScript
+- HTML,SCSS,JavaScript
 
 # バックエンド
 - Ruby, Ruby on Rails7.0.0
 
 # データベース
-- MySQL5.7.44(開発環境)
-- PostgreSQL(本番環境)
+- MySQL5.7.44
 
 # ソース管理
 - GitHub,GitHub Desktop
 
 # デプロイ
-- Render
+- AWS(EC2)
