@@ -7,13 +7,41 @@
 
 .curtain {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-image: url('<%= image_path("curtain.jpg") %>');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
+}
+
+.contents {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.top-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.top-content label {
+  margin-right: 30px;
+}
+
+.checkbox-label {
+  color: #eaabab;
 }
 
 .main-search-form {
@@ -44,20 +72,8 @@
 }
 
 .search-btn:hover {
-  background-color: #2a2828;
+  background-color: #494747;
   color: #ffffff;
-}
-
-.contents {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
 }
 
 .bottom-content {
