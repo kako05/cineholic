@@ -1,4 +1,5 @@
 class FilmsController < ApplicationController
+  require 'nkf'
   before_action :set_q, only: [:index, :search]
 
   def index
@@ -25,39 +26,42 @@ class FilmsController < ApplicationController
 
   def search_films
     films = Film.all
-
+  
     if params[:q_cont].present?
       keyword = normalize_search_term(params[:q_cont])
+  
+      films = films.joins("LEFT JOIN film_casts ON films.id = film_casts.film_id")
+                   .joins("LEFT JOIN casts ON film_casts.cast_id = casts.id")
+                   .joins("LEFT JOIN film_trailers ON films.id = film_trailers.film_id")
+                   .joins("LEFT JOIN trailers ON film_trailers.trailer_id = trailers.id")
+  
+      # 検索条件を設定する
+      conditions = []
 
-      if search_params_present?
-        films = films.none # 初期化してから条件を適用
-
-        if params[:search_title].present?
-          films = films.or(Film.where("title LIKE :q", q: keyword))
-        end
-
-        if params[:search_cast].present?
-          films = films.or(Film.joins(:casts).where("casts.name LIKE :q", q: keyword))
-        end
-
-        if params[:search_staff].present?
-          films = films.or(Film.joins(:trailers).where("trailers.name LIKE :q", q: keyword))
-        end
-      else
-        films = films.joins("LEFT JOIN film_casts ON films.id = film_casts.film_id")
-                     .joins("LEFT JOIN casts ON film_casts.cast_id = casts.id")
-                     .joins("LEFT JOIN film_trailers ON films.id = film_trailers.film_id")
-                     .joins("LEFT JOIN trailers ON film_trailers.trailer_id = trailers.id")
-                     .where("title LIKE :q OR casts.name LIKE :q OR trailers.name LIKE :q", q: keyword)
-      end
+      # タイトルの検索条件
+      conditions << "films.title LIKE :q" if params[:search_title].present?
+  
+      # 役者名の検索条件
+      conditions << "casts.name LIKE :q" if params[:search_cast].present?
+  
+      # スタッフ名の検索条件
+      conditions << "trailers.name LIKE :q" if params[:search_staff].present?
+  
+      # キーワードと条件を結合
+      query = conditions.join(" OR ")
+  
+      # 実行
+      films = films.where(query, q: keyword.map { |k| "%#{k}%" })
     end
-
+  
+    # 重複を除去
     films = films.distinct
-
+  
+    # 映画が見つからない場合の処理
     if films.empty?
       flash.now[:alert] = '映画が見つかりません'
     end
-
+  
     films
   end
 
