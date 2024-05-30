@@ -10,6 +10,6 @@
     </div>
     <%= paginate @films %>
   <% else %>
-    <p>映画が見つかりませんでした。</p>
+    <p><%= flash.now[:alert] || "映画が見つかりませんでした。" %></p>
   <% end %>
 </div>

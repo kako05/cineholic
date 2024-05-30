@@ -3,11 +3,24 @@
   <div class="curtain">
     <%= image_tag "curtain.jpg", class: "curtain-image" %>
     <div class="contents">
-        <%= form_with(url: search_films_films_path, method: "get", local: true, class: "main-search-form") do |form| %>
-          <%= form.text_field :q_cont, placeholder: "Search", class: "search-input" %>
-          <%= form.submit "GO", class: "search-btn" %>
-        <% end %>
+      <div class="top-content">
+        <label>
+          <%= check_box_tag "search_title", "1", false, class: "search-checkbox" %>
+          <span class="checkbox-label">タイトル</span>
+        </label>
+        <label>
+          <%= check_box_tag "search_cast", "1", false, class: "search-checkbox" %>
+          <span class="checkbox-label">俳優名</span>
+        </label>
+        <label>
+          <%= check_box_tag "search_staff", "1", false, class: "search-checkbox" %>
+          <span class="checkbox-label">スタッフ名</span>
+        </label>
       </div>
+      <%= form_with(url: search_films_films_path, method: "get", local: true, class: "main-search-form") do |form| %>
+        <%= form.text_field :q_cont, placeholder: "Search", class: "search-input" %>
+        <%= form.submit "GO", class: "search-btn" %>
+      <% end %>
       <div class="bottom-content">
         <%= link_to "ENTER", showing_films_films_path, class: "enter-buttin" %>
       </div>
