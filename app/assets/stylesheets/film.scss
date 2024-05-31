@@ -1,4 +1,4 @@
-.main {
+.index-main {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -26,32 +26,49 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+  max-width: 330px;
+  width: 100%;
 }
 
 .top-content {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around; 
   margin-bottom: 20px;
+  width: 100%;
+
 }
 
 .top-content label {
-  margin-right: 30px;
+  position: relative;
+  cursor: pointer;
+  flex: 1; 
+  display: flex;
+  align-items: center;
 }
 
 .checkbox-label {
   color: #eaabab;
+  margin-left: 5px;
 }
 
 .main-search-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   padding: 10px;
-  width: 500px;
+  width: 100%;
+
 }
 
+.search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  max-width: 330px;
+}
 .search-input {
   padding: 5px;
   margin-right: 10px;
@@ -60,15 +77,23 @@
   color: #000000;
   flex: 1;
   text-align: right;
+  height: 30px; 
+  border-radius: 3px;
 }
 
 .search-btn {
   padding: 5px 10px;
   background-color: #c3c0c0;
   border: none;
+  font-size: 14px;
   color: #000000;
   cursor: pointer;
-  height: 100%;
+  height: 30px;
+  width: 65px;
+  border-radius: 3px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
 }
 
 .search-btn:hover {
@@ -85,7 +110,7 @@
   text-decoration: none;
 }
 
-.showing-main {
+.film-main {
   display: flex;
   justify-content: center;
   width: 100vw;
@@ -94,7 +119,7 @@
   background-color: #f9f9f9;
 }
 
-.showing-main .content {
+.film-main .content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,7 +128,7 @@
   box-sizing: border-box;
 }
 
-.showing-main .filmline-left, .showing-main .filmline-right {
+.film-main .filmline-left, .film-main .filmline-right {
   position: relative;
   top: 0;
   width: 50px;
@@ -111,15 +136,15 @@
   background-size: contain;
 }
 
-.showing-main .filmline-left {
+.film-main .filmline-left {
   margin-right: 10px;
 }
 
-.showing-main .filmline-right {
+.film-main .filmline-right {
   margin-left: 10px;
 }
 
-.showing-main .shows {
+.film-main .shows {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,7 +152,7 @@
   margin-top: 20px;
 }
 
-.showing-main .film {
+.film-main .film {
   display: flex;
   height: 160px;
   background: #ebebeb;
@@ -138,23 +163,23 @@
   margin-bottom: 20px;
 }
 
-.showing-main .film:hover {
+.film-main .film:hover {
   transform: scale(1.05);
 }
 
-.showing-main .left-show {
+.film-main .left-show {
   flex: 1;
   width: 130px;
   height: 160px;
   overflow: hidden;
   position: relative;
   display: flex;
-  justify-content: center; /* 水平方向の中央揃え */
+  justify-content: center; 
   align-items: center;
   background-color: #070707;
 }
 
-.showing-main .poster-image {
+.film-main .poster-image {
   width: auto;
   height: auto;
   max-width: 100%;
@@ -163,28 +188,28 @@
   display: block;
 }
 
-.showing-main .right-show {
+.film-main .right-show {
   flex: 2;
   padding: 20px;
 }
 
-.showing-main .title-show {
+.film-main .title-show {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.showing-main .title-show h2 {
+.film-main .title-show h2 {
   font-size: 25px;
   margin: 0;
 }
 
-.showing-main .release-date {
+.film-main .release-date {
   font-size: 15px;
   color: #4f4e4e;
 }
 
-.showing-main .text-show {
+.film-main .text-show {
   font-size: 15px;
   margin-top: 25px;
   color: #171717;
@@ -196,18 +221,18 @@
 
 .page {
   display: inline-block;
-  width: 30px; /* サークルの直径 */
-  height: 30px; /* サークルの直径 */
-  border-radius: 50%; /* サークルを描くための円形のボーダー */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   color: #620606;
-  background-color: #ffffff; /* サークルの背景色 */
-  text-align: center; /* テキストを中央に配置 */
-  line-height: 30px; /* テキストの中央揃え */
-  margin-right: 10px; /* 右側の間隔 */
+  background-color: #ffffff;
+  text-align: center;
+  line-height: 30px;
+  margin-right: 10px;
 }
 
 .page:hover {
-  background-color: #620606; /* ホバーしたときの背景色 */
-  color: #ffffff; /* ホバーしたときのテキスト色 */
-  cursor: pointer; /* カーソルをポインターに変更 */
+  background-color: #620606;
+  color: #ffffff;
+  cursor: pointer;
 }

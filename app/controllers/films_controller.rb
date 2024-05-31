@@ -59,7 +59,7 @@ class FilmsController < ApplicationController
       conditions.each do |condition|
         keyword_conditions << keywords.map { |keyword| "#{condition}" }
       end
-  
+
       # キーワードと条件を結合
       query = keyword_conditions.flatten.join(" OR ")
       films = films.where(query, q: keywords.map { |keyword| "%#{keyword}%" })

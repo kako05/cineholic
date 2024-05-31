@@ -1,7 +1,7 @@
 <%= render "shared/navbar" %>
-<div class="main">
+<div class="film-main">
   <div class="filmline-left"></div>
-  <div class="filmline-right"></div>
+  <div class="content">
   <% if @films.present? %>
     <div class="shows">
       <% @films.each do |film| %>
@@ -12,4 +12,5 @@
   <% else %>
     <p><%= flash.now[:alert] || "映画が見つかりませんでした。" %></p>
   <% end %>
+  <div class="filmline-right"></div>
 </div>
