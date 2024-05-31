@@ -86,3 +86,4 @@ class FilmsController < ApplicationController
   def search_params_present?
     params.values_at(:search_title, :search_cast, :search_staff).any?(&:present?)
   end
+end
