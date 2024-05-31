@@ -48,12 +48,25 @@ class FilmsController < ApplicationController
   
       # チェックボックスがすべてfalseのときdescriptionとtextカラムを除外して検索
       if conditions.empty?
-        columns_to_search = (Film.column_names - ["description"]) + (Trailer.column_names - ["text"])
-        columns_to_search.each do |column|
-          conditions << "LOWER(films.#{column}) LIKE :q"
+        film_conditions = []
+        (Film.column_names - ["description"]).each do |column|
+          film_conditions << "LOWER(films.#{column}) LIKE :q"
         end
+        conditions << film_conditions.join(" OR ")
+
+        cast_conditions = []
+        Cast.column_names.each do |column|
+          cast_conditions << "LOWER(casts.#{column}) LIKE :q"
+        end
+        conditions << cast_conditions.join(" OR ")
+
+        trailer_conditions = []
+        (Trailer.column_names - ["text"]).each do |column|
+          trailer_conditions << "LOWER(trailers.#{column}) LIKE :q"
+        end
+        conditions << trailer_conditions.join(" OR ")
       end
-  
+
       # 各キーワードに対して部分一致検索を行う
       keyword_conditions = []
       conditions.each do |condition|
