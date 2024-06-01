@@ -6,9 +6,9 @@ namespace :films do
   task scrape_6787: :environment do
     base_url = 'http://jfdb.jp'
     page_size = 25
-    max_pages = 16
+    max_pages = 20
 
-    (8..max_pages).each do |page_number|
+    (12..max_pages).each do |page_number|
       index_url = "#{base_url}/search/title?ORDER=RELE_D&PAGE=#{page_number}" # 公開日で降順に並べ替え
       puts "Fetching movies from page #{page_number}: #{index_url}"
       begin
@@ -27,6 +27,7 @@ namespace :films do
 
         # カタカナ変換を削除し、全角を半角に変換する部分だけにする
         title = title.tr('ａ-ｚＡ-Ｚａ-ｚ', 'a-zA-Z').unicode_normalize(:nfkc)
+        title = title.downcase # キーワードを小文字に変換
         film = Film.find_or_create_by(title: title)
 
         description = item.css('.title-description').text.strip
