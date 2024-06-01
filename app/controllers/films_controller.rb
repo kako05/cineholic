@@ -31,57 +31,58 @@ class FilmsController < ApplicationController
       normalized_keywords = normalize_search_term(params[:q_cont]).split(' ')
 
       # データベースからの取得結果も正規化
-      films = films.joins("LEFT JOIN film_casts ON films.id = film_casts.film_id")
-                   .joins("LEFT JOIN casts ON film_casts.cast_id = casts.id")
-                   .joins("LEFT JOIN film_trailers ON films.id = film_trailers.film_id")
-                   .joins("LEFT JOIN trailers ON film_trailers.trailer_id = trailers.id")
-                   .distinct
+      films = films.joins(:casts, :trailers, :film_casts, :film_trailers).distinct
+      # films = films.joins("LEFT JOIN film_casts ON films.id = film_casts.film_id")
+      #              .joins("LEFT JOIN casts ON film_casts.cast_id = casts.id")
+      #              .joins("LEFT JOIN film_trailers ON films.id = film_trailers.film_id")
+      #              .joins("LEFT JOIN trailers ON film_trailers.trailer_id = trailers.id")
+      #              .distinct
 
       # 検索条件を設定する
       conditions = []
+      values = []
 
       # タイトルがtrueの場合の条件を追加
-      conditions << "LOWER(films.title) LIKE :q" if params[:search_title] == "1"
+      if params[:search_title] == "1"
+        add_search_conditions(conditions, values, normalized_keywords, "films.title")
+      end
 
       # 役者名がtrueの場合の条件を追加
-      conditions << "LOWER(casts.name) LIKE :q" if params[:search_cast] == "1"
+      if params[:search_cast] == "1"
+        add_search_conditions(conditions, values, normalized_keywords, "casts.name")
+      end
 
       # スタッフ名がtrueの場合の条件を追加
-      conditions << "LOWER(trailers.name) LIKE :q" if params[:search_staff] == "1"
+      if params[:search_staff] == "1"
+        add_search_conditions(conditions, values, normalized_keywords, "trailers.name")
+      end
 
-      # チェックボックスがすべてfalseのときdescriptionとtextカラムを除外して検索
+      # チェックボックスがすべてfalseの場合
       if conditions.empty?
-        film_conditions = []
-        (Film.column_names - ["description"]).each do |column|
-          film_conditions << "LOWER(films.#{column}) LIKE :q"
+        # Filmモデルのdescription以外のカラムを対象にする
+        Film.column_names.each do |column|
+          next if column == "description"
+          add_search_conditions(conditions, values, normalized_keywords, "films.#{column}")
         end
-        conditions << film_conditions.join(" OR ")
 
-        cast_conditions = []
+        # Castモデルの全てのカラムを対象にする
         Cast.column_names.each do |column|
-          cast_conditions << "LOWER(casts.#{column}) LIKE :q"
+          add_search_conditions(conditions, values, normalized_keywords, "casts.#{column}")
         end
-        conditions << cast_conditions.join(" OR ")
 
-        trailer_conditions = []
-        (Trailer.column_names - ["text"]).each do |column|
-          trailer_conditions << "LOWER(trailers.#{column}) LIKE :q"
+        # Trailerモデルのtext以外のカラムを対象にする
+        Trailer.column_names.each do |column|
+          next if column == "text"
+          add_search_conditions(conditions, values, normalized_keywords, "trailers.#{column}")
         end
-        conditions << trailer_conditions.join(" OR ")
       end
 
       # 各キーワードと条件を結合してクエリを作成
-      queries = []
-      conditions.each do |condition|
-        normalized_keywords.each do |keyword|
-          queries << condition.gsub(':q', "'%#{keyword}%'")
-        end
-      end
-      # クエリを結合
-      full_query = queries.join(' OR ')
+      full_query = conditions.join(' OR ')
 
       # 検索実行
-      films = films.where(full_query)
+      films = films.where(full_query, *values)
+      # films = films.where(full_query, *normalized_keywords.map { |kw| "%#{kw}%" })
     end
 
     # 映画が見つからない場合の処理
@@ -92,13 +93,28 @@ class FilmsController < ApplicationController
     films
   end
 
+  def add_search_conditions(conditions, values, keywords, column)
+    keywords.each do |keyword|
+      conditions << "#{column} LIKE ?"
+      values << "%#{keyword}%"
+    end
+  end
+
   def normalize_search_term(term)
     term = term.downcase # 入力文字列を小文字に変換
-    term = term.tr('ａ-ｚＡ-Ｚ０-９', 'a-zA-Z0-9') # 全角英数字を半角英数字に変換
-    term = term.tr('ぁ-ん', 'ァ-ン') # ひらがなをカタカナに変換
     term = term.unicode_normalize(:nfkc) # Unicode正規化を適用する
-    term.gsub!(/\s+/, '%') # 空白を '%' に変換して部分一致検索に対応
-    "%#{term}%"
+    generate_variants(term) # カタカナ、ひらがな、漢字、英字のバリエーションを生成
+  end
+
+  def generate_variants(term)
+    variants = [
+    term, 
+    term.tr('ぁ-ん', 'ァ-ン'), # ひらがなをカタカナに変換
+    term.tr('ァ-ン', 'ぁ-ん'), # カタカナをひらがなに変換
+    term.tr('ぁ-んァ-ン', 'a-zA-Z') # ひらがな・カタカナをローマ字に変換
+  ]
+  binding.pry
+  variants.map { |variant| "%#{variant}%" }
   end
 
   def search_params_present?
