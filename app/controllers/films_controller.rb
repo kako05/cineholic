@@ -40,13 +40,13 @@ class FilmsController < ApplicationController
       # 検索条件を設定する
       conditions = []
 
-      # タイトルがtrue
+      # タイトルがtrueの場合の条件を追加
       conditions << "LOWER(films.title) LIKE :q" if params[:search_title] == "1"
 
-      # 役者名がtrue
+      # 役者名がtrueの場合の条件を追加
       conditions << "LOWER(casts.name) LIKE :q" if params[:search_cast] == "1"
 
-      # スタッフ名がtrue
+      # スタッフ名がtrueの場合の条件を追加
       conditions << "LOWER(trailers.name) LIKE :q" if params[:search_staff] == "1"
 
       # チェックボックスがすべてfalseのときdescriptionとtextカラムを除外して検索
@@ -77,7 +77,6 @@ class FilmsController < ApplicationController
           queries << condition.gsub(':q', "'%#{keyword}%'")
         end
       end
-
       # クエリを結合
       full_query = queries.join(' OR ')
 
@@ -95,9 +94,8 @@ class FilmsController < ApplicationController
 
   def normalize_search_term(term)
     term = term.downcase # 入力文字列を小文字に変換
-    term = term.tr('ぁ-ん','ァ-ン') # ひらがなをカタカナに変換
-    term = term.tr('ａ-ｚ','Ａ-Ｚ') # 全角英字を半角英字に変換
-    term = term.tr('Ａ-Ｚ','A-Za-z') # 大文字英字を小文字英字に変換
+    term = term.tr('ａ-ｚＡ-Ｚ０-９', 'a-zA-Z0-9') # 全角英数字を半角英数字に変換
+    term = term.tr('ぁ-ん', 'ァ-ン') # ひらがなをカタカナに変換
     term = term.unicode_normalize(:nfkc) # Unicode正規化を適用する
     term.gsub!(/\s+/, '%') # 空白を '%' に変換して部分一致検索に対応
     "%#{term}%"
