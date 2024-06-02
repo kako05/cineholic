@@ -1,10 +1,12 @@
 <div class="film">
   <div class="left-show">
-    <%= image_tag film.poster_image_url, class: "poster-image" %>
+    <%= link_to film_path(film) do %>
+      <%= image_tag film.poster_image_url, class: "poster-image" %>
+    <% end %>
   </div>
   <div class="right-show">
     <div class="title-show">
-      <h2><%= film.title %></h2>
+      <h2><%= link_to film.title, film_path(film) %></h2>
       <span class="release-date"><%= film.release_date %></span>
     </div>
     <div class="text-show">

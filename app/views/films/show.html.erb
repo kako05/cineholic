@@ -1,43 +1,67 @@
 <%= render "shared/navbar" %>
-<div class="main">
+<div class="film-main">
   <div class="filmline-left"></div>
-  <div class="filmline-right"></div>
-
-  <div class="film-detail">
-    <div class="film">
-      <div class="left-show">
-        <%= image_tag @film.poster_image_url, class: "poster-image" %>
-      </div>
-      <div class="right-show">
-        <div class="title-show">
-          <h2><%= @film.title %></h2>
-          <small class="release-date">( <%= @film.release_date %> )</small>
+  <div class="content">
+    <div class="shows">
+      <div class="show-detail">
+        <div class="show-top">
+          <div class="left-show-top">
+            <%= image_tag @film.poster_image_url, class: "poster" %>
+          </div>
+          <div class="rigth-show-top">
+            <div class="right-top">
+              <h2><%= @film.title %></h2>
+              <small class="release-date">( <%= @film.release_date %> )</small>
+            </div>
+            <div class="right-bottom">
+              <%= link_to "レビュー", film_comments_path(@film), class: "comment-link" %>
+              <%= link_to "投稿", new_film_comment_path(@film), class: "comment-link" %>
+            </div>
+          </div>
         </div>
-        <div class="text-show">
-          <p><%= @film.text %></p>
+        <div class="film-detail">
+          <div class="text-selection">
+            <% @trailers.each do |trailer| %>
+              <p><%= trailer.text %></p>
+            <% end %>
+          </div>
+          <div class="cast-and-staff">
+            <div class="cast-section">
+            <h3>キャスト</h3>
+              <ul>
+                <% @casts.each do |cast| %>
+                  <li><%= cast.name %></li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="staff-section">
+            <h3>スタッフ</h3>
+              <ul>
+                <% @trailers.each do |trailer| %>
+                  <% if trailer.role.present? && trailer.name.present? %>
+                    <li><strong><%= trailer.role %> : </strong> <%= trailer.name %></li>
+                  <% elsif trailer.role.present? %>
+                    <li><strong><%= trailer.role %></strong></li>
+                  <% elsif trailer.name.present? %>
+                    <li><%= trailer.name %></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <div class="production-section">
+            <% @trailers.each do |trailer| %>
+              <% if trailer.production.present? %>
+                <p><strong>制作会社 :</strong> <%= trailer.production %></p>
+              <% end %>
+              <% if trailer.official_site.present? %>
+                <p><strong>公式サイト :</strong> <%= link_to trailer.official_site, trailer.official_site %></p>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="staff-section">
-      <h3>スタッフ</h3>
-      <% @film.staffs.each do |staff| %>
-        <p><%= staff.name %>: <%= staff.role %></p>
-      <% end %>
-    </div>
-
-    <div class="cast-section">
-      <h3>キャスト</h3>
-      <% @film.casts.each do |cast| %>
-        <p><%= cast.name %>: <%= cast.role %></p>
-      <% end %>
-    </div>
-
-    <div class="production-section">
-      <h3>制作会社</h3>
-      <% @film.production_companies.each do |company| %>
-        <p><%= company.name %></p>
-      <% end %>
     </div>
   </div>
+  <div class="filmline-right"></div>
 </div>
