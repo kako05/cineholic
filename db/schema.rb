@@ -19,12 +19,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_02_033226) do
 
   create_table "comments", charset: "utf8mb4", force: :cascade do |t|
     t.text "comment"
-    t.bigint "user_id", null: false
-    t.bigint "film_id", null: false
+    t.integer "user_id"
+    t.integer "film_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["film_id"], name: "index_comments_on_film_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "film_casts", charset: "utf8mb4", force: :cascade do |t|
@@ -80,8 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_02_033226) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, length: 191
   end
 
-  add_foreign_key "comments", "films"
-  add_foreign_key "comments", "users"
   add_foreign_key "film_casts", "casts"
   add_foreign_key "film_casts", "films"
   add_foreign_key "film_trailers", "films"
