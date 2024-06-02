@@ -8,7 +8,7 @@
 - レビュー投稿
 
 # URL
-
+http://18.178.57.99
 
 # テスト用アカウント
 - Basic認証ID :admin
@@ -175,18 +175,18 @@
 - belongs_to :film
 
 
-## 開発環境
-# フロントエンド
+# 開発環境
+## フロントエンド
 - HTML,SCSS,JavaScript
 
-# バックエンド
+## バックエンド
 - Ruby, Ruby on Rails7.0.0
 
-# データベース
+## データベース
 - MySQL5.7.44
 
-# ソース管理
+## ソース管理
 - GitHub,GitHub Desktop
 
-# デプロイ
+## デプロイ
 - AWS(EC2)

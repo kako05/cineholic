@@ -1,5 +1,5 @@
 class FilmsController < ApplicationController
-  require 'nkf'
+  require 'romaji'
   before_action :set_q, only: [:index, :search]
 
   def index
@@ -26,74 +26,106 @@ class FilmsController < ApplicationController
 
   def search_films
     films = Film.all
-  
+
     if params[:q_cont].present?
-      keywords = normalize_search_term(params[:q_cont]).split(' ')
-      films = films.joins("LEFT JOIN film_casts ON films.id = film_casts.film_id")
-                   .joins("LEFT JOIN casts ON film_casts.cast_id = casts.id")
-                   .joins("LEFT JOIN film_trailers ON films.id = film_trailers.film_id")
-                   .joins("LEFT JOIN trailers ON film_trailers.trailer_id = trailers.id")
-  
+      # 入力されたキーワードを正規化
+      normalized_keywords = normalize_search_term(params[:q_cont])
+
+      # データベースからの取得結果も正規化
+      films = films.joins(:casts, :trailers, :film_casts, :film_trailers).distinct
+      # films = films.joins("LEFT JOIN film_casts ON films.id = film_casts.film_id")
+      #              .joins("LEFT JOIN casts ON film_casts.cast_id = casts.id")
+      #              .joins("LEFT JOIN film_trailers ON films.id = film_trailers.film_id")
+      #              .joins("LEFT JOIN trailers ON film_trailers.trailer_id = trailers.id")
+      #              .distinct
+
       # 検索条件を設定する
       conditions = []
-  
-      # タイトルがtrue
-      conditions << "LOWER(films.title) LIKE :q" if params[:search_title] == "1"
-  
-      # 役者名がtrue
-      conditions << "LOWER(casts.name) LIKE :q" if params[:search_cast] == "1"
-  
-      # スタッフ名がtrue
-      conditions << "LOWER(trailers.name) LIKE :q" if params[:search_staff] == "1"
-  
-      # チェックボックスがすべてfalseのときdescriptionとtextカラムを除外して検索
+      values = []
+
+      # タイトルがtrueの場合の条件を追加
+      if params[:search_title] == "1"
+        add_search_conditions(conditions, values, normalized_keywords, "films.title")
+      end
+
+      # 役者名がtrueの場合の条件を追加
+      if params[:search_cast] == "1"
+        add_search_conditions(conditions, values, normalized_keywords, "casts.name")
+      end
+
+      # スタッフ名がtrueの場合の条件を追加
+      if params[:search_staff] == "1"
+        add_search_conditions(conditions, values, normalized_keywords, "trailers.name")
+      end
+
+      # チェックボックスがすべてfalseの場合
       if conditions.empty?
-        film_conditions = []
-        (Film.column_names - ["description"]).each do |column|
-          film_conditions << "LOWER(films.#{column}) LIKE :q"
+        # Filmモデルのdescription以外のカラムを対象にする
+        Film.column_names.each do |column|
+          next if column == "description"
+          add_search_conditions(conditions, values, normalized_keywords, "films.#{column}")
         end
-        conditions << film_conditions.join(" OR ")
 
-        cast_conditions = []
+        # Castモデルの全てのカラムを対象にする
         Cast.column_names.each do |column|
-          cast_conditions << "LOWER(casts.#{column}) LIKE :q"
+          add_search_conditions(conditions, values, normalized_keywords, "casts.#{column}")
         end
-        conditions << cast_conditions.join(" OR ")
 
-        trailer_conditions = []
-        (Trailer.column_names - ["text"]).each do |column|
-          trailer_conditions << "LOWER(trailers.#{column}) LIKE :q"
+        # Trailerモデルのtext以外のカラムを対象にする
+        Trailer.column_names.each do |column|
+          next if column == "text"
+          add_search_conditions(conditions, values, normalized_keywords, "trailers.#{column}")
         end
-        conditions << trailer_conditions.join(" OR ")
       end
 
-      # 各キーワードに対して部分一致検索を行う
-      keyword_conditions = []
-      conditions.each do |condition|
-        keyword_conditions << keywords.map { |keyword| "#{condition}" }
-      end
+      # 各キーワードと条件を結合してクエリを作成
+      full_query = conditions.join(' OR ')
 
-      # キーワードと条件を結合
-      query = keyword_conditions.flatten.join(" OR ")
-      films = films.where(query, q: keywords.map { |keyword| "%#{keyword}%" })
-  
-      films = films.distinct
+      # 検索実行
+      films = films.where(full_query, *values)
+      # films = films.where(full_query, *normalized_keywords.map { |kw| "%#{kw}%" })
     end
-  
+
     # 映画が見つからない場合の処理
     if films.empty?
       flash.now[:alert] = '映画が見つかりません'
     end
-  
+
     films
   end
-  
+
+  def add_search_conditions(conditions, values, keywords, column)
+    keywords.each do |keyword|
+      conditions << "#{column} LIKE ?"
+      values << "%#{keyword}%"
+    end
+  end
 
   def normalize_search_term(term)
-    term = NKF.nkf('-w -Z1', term) # 入力文字列を半角に変換
-    term.downcase! # 入力文字列を小文字に変換
-    term.gsub!(/\s+/, '%') # 空白を '%' に変換して部分一致検索に対応
-    "%#{term}%"
+    term = term.downcase # 入力文字列を小文字に変換
+    term = term.unicode_normalize(:nfkc) # Unicode正規化を適用する
+    generate_variants(term) # カタカナ、ひらがな、漢字、英字のバリエーションを生成
+  end
+
+  def generate_variants(term)
+    variants = [term]
+    if term =~ /\p{Hiragana}/
+      # ひらがなをカタカナに変換
+      variants << term.tr('ぁ-ん', 'ァ-ン')
+      # ひらがなをローマ字に変換
+      variants << Romaji.kana2romaji(term)
+    elsif term =~ /\p{Katakana}/
+      # カタカナをひらがなに変換
+      variants << term.tr('ァ-ン', 'ぁ-ん')
+      # カタカナをローマ字に変換
+      variants << Romaji.kana2romaji(term)
+    elsif term =~ /\p{Alnum}/
+      # ローマ字をカタカナに変換（romaji gemにはこの機能がないため、自前で変換）
+      variants << Romaji.romaji2kana(term)
+      # カタカナをひらがなに変換
+      variants << Romaji.romaji2kana(term).tr('ァ-ン', 'ぁ-ん')
+    end
+  variants.uniq.map { |variant| "%#{variant}%" }
   end
 
   def search_params_present?
