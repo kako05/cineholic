@@ -182,7 +182,6 @@ GEM
       net-protocol
     net-ssh (7.2.3)
     nio4r (2.7.3)
-    nkf (0.2.0)
     nokogiri (1.16.5-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.5-x86_64-linux)
@@ -251,6 +250,8 @@ GEM
       railties (>= 5.2)
     rexml (3.2.8)
       strscan (>= 3.0.9)
+    romaji (0.2.4)
+      rake (>= 0.8.0)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.0)
@@ -363,12 +364,12 @@ DEPENDENCIES
   jbuilder
   kaminari
   mysql2 (~> 0.5)
-  nkf
   nokogiri
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.0)
   ransack
+  romaji
   rspec-rails
   rubocop
   sassc-rails

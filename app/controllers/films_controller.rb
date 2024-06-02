@@ -1,4 +1,5 @@
 class FilmsController < ApplicationController
+  require 'romaji'
   before_action :set_q, only: [:index, :search]
 
   def index
@@ -28,7 +29,7 @@ class FilmsController < ApplicationController
 
     if params[:q_cont].present?
       # 入力されたキーワードを正規化
-      normalized_keywords = normalize_search_term(params[:q_cont]).split(' ')
+      normalized_keywords = normalize_search_term(params[:q_cont])
 
       # データベースからの取得結果も正規化
       films = films.joins(:casts, :trailers, :film_casts, :film_trailers).distinct
@@ -107,14 +108,24 @@ class FilmsController < ApplicationController
   end
 
   def generate_variants(term)
-    variants = [
-    term, 
-    term.tr('ぁ-ん', 'ァ-ン'), # ひらがなをカタカナに変換
-    term.tr('ァ-ン', 'ぁ-ん'), # カタカナをひらがなに変換
-    term.tr('ぁ-んァ-ン', 'a-zA-Z') # ひらがな・カタカナをローマ字に変換
-  ]
-  binding.pry
-  variants.map { |variant| "%#{variant}%" }
+    variants = [term]
+    if term =~ /\p{Hiragana}/
+      # ひらがなをカタカナに変換
+      variants << term.tr('ぁ-ん', 'ァ-ン')
+      # ひらがなをローマ字に変換
+      variants << Romaji.kana2romaji(term)
+    elsif term =~ /\p{Katakana}/
+      # カタカナをひらがなに変換
+      variants << term.tr('ァ-ン', 'ぁ-ん')
+      # カタカナをローマ字に変換
+      variants << Romaji.kana2romaji(term)
+    elsif term =~ /\p{Alnum}/
+      # ローマ字をカタカナに変換（romaji gemにはこの機能がないため、自前で変換）
+      variants << Romaji.romaji2kana(term)
+      # カタカナをひらがなに変換
+      variants << Romaji.romaji2kana(term).tr('ァ-ン', 'ぁ-ん')
+    end
+  variants.uniq.map { |variant| "%#{variant}%" }
   end
 
   def search_params_present?
