@@ -5,12 +5,20 @@
   z-index: 1;
 }
 
-.curtain {
+.index-main .curtain {
   position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.index-main .curtain-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('<%= image_path("curtain.jpg") %>');
-  background-size: cover;
+  background: asset-url("curtain.jpg");
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
@@ -312,6 +320,7 @@
   color: #620606;
   text-decoration: underline;
 }
+
 .text-selection {
   width: 600px;
   margin-top: 30px;

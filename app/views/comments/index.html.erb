@@ -1,0 +1,23 @@
+<%= render "shared/navbar" %>
+<div class="comment-main">
+  <div class="filmline-left"></div>
+  <div class="comment-content">
+    <div class="comment-top">
+      <h1 class="film-title"><%= @film.title %></h1>
+      <%= link_to 'Back', film_path(@film), class: "back-link" %>
+    </div>
+    <div class="comment-bottom">
+      <h2 class="review">レビュー</h2>
+      <ul class="comment-items">
+        <% @comments.each do |comment| %>
+          <li class="comment-item">
+            <div class="comment-text"><%= comment.text %></div>
+            <div class="comment-user"><%= comment.user.nickname %></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <%= paginate @comments %>
+  </div>
+  <div class="filmline-right"></div>
+</div>
