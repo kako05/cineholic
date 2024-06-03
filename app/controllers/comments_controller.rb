@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :find_film, only: [:index, :create]
+  before_action :authenticate_user!
+  before_action :find_film, only: [:index, :new, :create]
   def index
-    @comments = @film.comments
+    @comments = @film.comments.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new
