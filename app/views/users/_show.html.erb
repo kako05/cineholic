@@ -1,0 +1,10 @@
+<div class="my-comment">
+  <div class="my-comment-area">
+    <div class="my-comment-film">
+      <%= link_to comment.film.title, film_path(comment.film) %> 
+    </div>
+    <div class="my-comment-text">
+      <%= comment.body %>
+    </div>
+  </div>
+</div>

@@ -103,7 +103,7 @@ h2 {
   font-size: 10px;
 }
 
-.main {
+.my-main {
   width: 100vw;
   height: 100vh;
   position: relative;
@@ -116,15 +116,15 @@ h2 {
   position: relative;
 }
 
-.left-page {
+.my-left-page {
   width: 34%;
   padding: 30px;
-  background: url('/assets/filmline.png') repeat-y right center;
+  background: asset-url("filmline.png") repeat-y right center;
   background-size: 50px auto;
   z-index: 2;
 }
 
-.page-top {
+.my-page-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -132,25 +132,31 @@ h2 {
 
 .my-name {
   font-size: 40px;
-  margin-left: 10px;
+  margin-left: 3%;
 }
 
 .my-edit {
-  margin-right: 60px;
+  margin-right: 20%;
 }
 
 
-.page-bottom {
+.my-page-bottom {
   
 }
 
-.right-page {
+.my-right-page {
   width: 66%;
   padding: 20px;
-  background: url('/assets/filmline.png') repeat-y right center;
+  background: asset-url("filmline.png") repeat-y right center;
   background-size: 50px auto;
   z-index: 1;
   position: relative;
+}
+
+.record {
+  font-size: 32px;
+  color: #620606;
+  padding: 3%;
 }
 
 .my-comments {
@@ -163,17 +169,13 @@ h2 {
   align-items: center;
 }
 
-.image {
-  
-}
-
-.comment-area {
+.my-comment-area {
   padding-left: 10px;
 }
 
-.comment-title {
-  
+.my-comment-film{
+
 }
 
-.comment-text {
+.my-comment-text {
 }
