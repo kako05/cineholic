@@ -18,6 +18,12 @@ class FilmsController < ApplicationController
     @films = search_films.page(params[:page]).per(10)
   end
 
+  def show
+    @film = Film.find(params[:id])
+    @casts = @film.casts
+    @trailers = @film.trailers
+  end
+
   private
 
   def set_q

@@ -5,12 +5,20 @@
   z-index: 1;
 }
 
-.curtain {
+.index-main .curtain {
   position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.index-main .curtain-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('<%= image_path("curtain.jpg") %>');
-  background-size: cover;
+  background: asset-url("curtain.jpg");
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
@@ -59,7 +67,6 @@
   align-items: center;
   padding: 10px;
   width: 100%;
-
 }
 
 .search-container {
@@ -202,6 +209,11 @@
 .film-main .title-show h2 {
   font-size: 25px;
   margin: 0;
+  border-bottom: none;
+}
+
+.film-main .title-show h2 a {
+  text-decoration: none;
 }
 
 .film-main .release-date {
@@ -235,4 +247,109 @@
   background-color: #620606;
   color: #ffffff;
   cursor: pointer;
+}
+
+.show-detail {
+  width: 900px;
+  padding: 30px;
+  background: #ebebeb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-top {
+  width: 700px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 70px;
+}
+
+.left-show-top {
+  flex: 1;
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: #070707;
+}
+
+.poster {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.rigth-show-top {
+  margin-left: 50px;
+  flex-grow: 1;
+}
+
+.right-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-top h2 {
+  font-size: 32px;
+  color: #620606;
+}
+
+.right-bottom {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.comment-link {
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.comment-link:hover {
+  color: #620606;
+  text-decoration: underline;
+}
+
+.text-selection {
+  width: 600px;
+  margin-top: 30px;
+}
+
+.cast-and-staff {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.cast-section, .staff-section {
+  width: 50%;
+  margin-top: 30px;
+}
+
+.cast-section h3, .staff-section h3 {
+  color: #620606;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.production-section {
+  margin: 30px 0;
+  text-align: center;
 }
