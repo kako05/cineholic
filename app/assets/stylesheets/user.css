@@ -119,7 +119,7 @@ h2 {
 .my-left-page {
   width: 34%;
   padding: 30px;
-  background: asset-url("filmline.png") repeat-y right center;
+  background: url('filmline.png') repeat-y right center;
   background-size: 48px auto;
   z-index: 2;
 }
@@ -139,14 +139,13 @@ h2 {
   margin-right: 20%;
 }
 
-
 .my-page-bottom {
   
 }
 
 .my-right-page {
   width: 66%;
-  background: asset-url("filmline.png") repeat-y right center;
+  background: url('filmline.png') repeat-y right center;
   background-size: 48px auto;
   z-index: 1;
   position: relative;
@@ -186,7 +185,7 @@ h2 {
   padding-left: 10px;
 }
 
-.my-comment-film{
+.my-comment-film {
   font-weight: bold;
   color: #620606;
   margin-bottom: 4px;
