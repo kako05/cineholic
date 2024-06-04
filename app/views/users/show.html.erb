@@ -22,10 +22,14 @@
     </div>
 
     <div class="my-right-page">
-    <h1 class="record">Record</h2>
-      <div class="my-comments">
-        <%= render partial: "show", collection: @comments %>
-      </div>
+      <div class="my-record">
+        <h1 class="record">Record</h2>
+          <div class="my-comments">
+            <% @comments.each do |comment| %>
+              <%= render partial: "show", locals: { comment: comment } %>
+            <% end %>
+          </div>
+        </div>
     </div>
   </div>
 </div>

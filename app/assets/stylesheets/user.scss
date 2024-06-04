@@ -120,7 +120,7 @@ h2 {
   width: 34%;
   padding: 30px;
   background: asset-url("filmline.png") repeat-y right center;
-  background-size: 50px auto;
+  background-size: 48px auto;
   z-index: 2;
 }
 
@@ -146,11 +146,21 @@ h2 {
 
 .my-right-page {
   width: 66%;
-  padding: 20px;
   background: asset-url("filmline.png") repeat-y right center;
-  background-size: 50px auto;
+  background-size: 48px auto;
   z-index: 1;
   position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.my-record {
+  width: 80%;
+  position: absolute;
+  margin-top: 90px;
 }
 
 .record {
@@ -160,13 +170,16 @@ h2 {
 }
 
 .my-comments {
-  position: relative;
   z-index: 2;
 }
 
 .my-comment {
-  display: flex;
-  align-items: center;
+  height: 240px;
+  background: #ebebeb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
 }
 
 .my-comment-area {
@@ -174,7 +187,9 @@ h2 {
 }
 
 .my-comment-film{
-
+  font-weight: bold;
+  color: #620606;
+  margin-bottom: 4px;
 }
 
 .my-comment-text {

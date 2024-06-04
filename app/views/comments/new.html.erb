@@ -1,12 +1,12 @@
 <%= render "shared/navbar" %>
-<div class="comment-main">
+<div class="new-main">
+  <div class="comment-left"></div>
   <div class="new-content">
-    <%= image_tag "comment-sidebar.png", class: "sidebar-left" %>
     <h1 class="new-title"><%= @film.title %></h1>
     <%= form_with(model: [@film, @comment], local: true) do |f| %>
       <div class="field">
         <%= image_tag "commentbar.png", class: "commentbar" %>
-        <%= f.label :レビュー, class: "review-label" %>
+        <%= f.label :comment, "レビュー", class: "review-label" %>
         <%= f.text_area :comment, autofocus: true %>
         <%= image_tag "commentbar.png", class: "commentbar" %>
       </div>
@@ -15,6 +15,6 @@
         <%= link_to "Back", film_path(@film), class: "comment-back" %>
       </div>
     <% end %>
-    <%= image_tag "comment-sidebar.png", class: "sidebar-right" %>
   </div>
+  <div class="comment-right"></div>
 </div>

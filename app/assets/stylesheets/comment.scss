@@ -4,13 +4,14 @@
   width: 100vw;
   height: 100vh;
   z-index: 1;
+  background-color: #a3a3a3;
 
 
   .filmline-left, .filmline-right {
     position: relative;
     top: 0;
     width: 50px;
-    background: asset-url('filmline.png') repeat-y;
+    background: asset-url("filmline.png") repeat-y;
     background-size: contain;
   }
 
@@ -36,16 +37,15 @@
     justify-content: space-between;
     align-items: center;
     width: 70%;
-    padding-top: 50px;
-    padding-right: 180px;
+    padding: 48px 16px 16px 0;
   }
 
   .film-title {
-    font-size: 30px;
+    font-size: 40px;
   }
 
   .back-link{ 
-    font-size: 28px;
+    font-size: 32px;
     text-decoration: none;
   }
 
@@ -54,19 +54,19 @@
     text-decoration: underline;
   }
 
+  .review {
+    font-size: 32px;
+    color: #620606;
+    text-align: left;
+    margin: 50px 0 30px 0;
+    padding-left: 15px;
+  }
+
   .comment-bottom {
     width: 70%;
     padding-top: 40px;
     display: flex;
-    flex-direction: column;
-  }
-
-  .review {
-    font-size: 25px;
-    color: #620606;
-    text-align: left;
-    margin-bottom: 30px;
-    padding-left: 15px;
+    justify-content: center;
   }
 
   .comment-items {
@@ -77,58 +77,68 @@
   }
 
   .comment-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
-    margin-bottom: 10px;
+    height: 160px;
+    display: flex;
+    background: #ebebeb;
+    border-radius: 8px;
+    margin-bottom: 24px;
   }
 
   .comment-text {
-    width: 350px;
+    width: 70%;
     text-align: left;
-    flex: 1;
+    padding: 24px;
   }
 
   .comment-user {
+    width: 30%;
     text-align: right;
-    padding-right: 30px;
+    padding: 24px;
   }
+}
+
+
+.new-main {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+
 
   .new-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     flex: 1;
-    width: 70%;
-    max-width: 70vw;
+    width: 60%;
+    max-width: 60vw;
     height: 100vh;
     box-sizing: border-box;
+    background-color: #a3a3a3;
+  }
+
+  .comment-left, .comment-right {
     position: relative;
-  }
-
-  .sidebar-left, .sidebar-right {
-    position: absolute;
     top: 0;
-    height: 100%;
-    background-image: url('<%= image_path("comment-sidebar.png") %>') repeat-y;
-    background-size: auto 100%;
+    width: 3%;
+    background: asset-url("comment-sidebar.png") repeat-y;
+    background-size: contain;
+    margin: 0;
   }
 
-  .sidebar-left {
-    left: 0;
-    width: 6%;
-  }
-
-  .sidebar-right {
+  .comment-left {
     right: 0;
-    width: 6%;
+  }
+
+  .comment-right {
+    left: 0;
   }
 
   .new-title {
     font-size: 50px;
-    margin-top: 18px;
+    margin-top: 24px;
     margin-bottom: 18px;
   }
 
@@ -139,22 +149,23 @@
   }
 
   .commentbar {
-    width: calc(100% - 12%);
-    margin: 15px 0; 
+    width: 100%;
+    margin: 24px 0; 
   }
 
   .review-label {
     font-size: 40px;
     color: #620606;
-    margin-top: 15px;
+    margin-top: 32px;
 
   }
 
   .field textarea {
     width: 80%;
-    height: 300px;
-    margin: 30px 0;
+    height: 320px;
+    margin: 48px;
     border-radius: 4px;
+    outline: none;
   }
 
   .comment-actions {
