@@ -6,16 +6,16 @@
       <h1 class="film-title"><%= @film.title %></h1>
       <%= link_to 'Back', film_path(@film), class: "back-link" %>
     </div>
+    <h1 class="review">レビュー</h1>
     <div class="comment-bottom">
-      <h2 class="review">レビュー</h2>
-      <ul class="comment-items">
+      <div class="comment-items">
         <% @comments.each do |comment| %>
-          <li class="comment-item">
-            <div class="comment-text"><%= comment.text %></div>
+          <div class="comment-item">
+            <div class="comment-text"><%= comment.comment %></div>
             <div class="comment-user"><%= comment.user.nickname %></div>
-          </li>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
     <%= paginate @comments %>
   </div>

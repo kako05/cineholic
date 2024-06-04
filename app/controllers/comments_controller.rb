@@ -24,6 +24,6 @@ class CommentsController < ApplicationController
     @film = Film.find(params[:film_id])
   end
   def comment_params
-    params.require(:comment).permit(:text).merge(user_id: current_user.id, film_id: params[:film_id])
+    params.require(:comment).permit(:comment).merge(user_id: current_user.id, film_id: params[:film_id])
   end
 end

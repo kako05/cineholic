@@ -1,38 +1,35 @@
 <%= render "shared/navbar" %>
-<div class="main">
+<div class="my-main">
   <div class="mypages">
 
-    <div class="left-page">
-      <div class="page-top">
+    <div class="my-left-page">
+      <div class="my-page-top">
         <div class="my-name">
-          <%= current_user.nickname %>
+          <%= @user.nickname %>
         </div>
         <div class="my-edit">
-          <%= link_to(edit_user_path(current_user)) do %>
-            <%= image_tag "icon.png" ,size: '50x50' ,class: "icon"%>
+          <%= link_to(edit_user_path(@user)) do %>
+            <%= image_tag "icon.png", size: '50x50', class: "icon" %>
           <% end %>
         </div>
       </div>
 
-      <div class="page-bottom">
-        <div class="like-lists">
+      <div class="my-page-bottom">
+        <div class="my-like-lists">
           <%# each.doでならべる %>
         </div>
       </div>
     </div>
 
-    <div class="right-page">
-      <div class="my-comments">
-        <%# each.doで並べる %>
-        <div class="my-comment">
-          <div class="image"></div>
-          <div class="commen-area">
-            <div class="comment-title"></div>
-            <div class="comment-text"></div>
+    <div class="my-right-page">
+      <div class="my-record">
+        <h1 class="record">Record</h2>
+          <div class="my-comments">
+            <% @comments.each do |comment| %>
+              <%= render partial: "show", locals: { comment: comment } %>
+            <% end %>
           </div>
         </div>
-        <%# <% end%>
-      </div>
     </div>
   </div>
 </div>
