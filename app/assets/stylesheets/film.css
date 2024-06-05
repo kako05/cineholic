@@ -77,6 +77,7 @@
   width: 100%;
   max-width: 330px;
 }
+
 .search-input {
   padding: 5px;
   margin-right: 10px;
@@ -156,23 +157,23 @@
 }
 
 .film-main .shows {
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  margin: 32px 0;
+  margin: 5%;
 }
 
 /* showing,search 共通部分 */
 .film-main .film {
   display: flex;
-  height: 160px;
+  height: 60%;
   background: #ebebeb;
   border-radius: 8px;
   overflow: hidden;
   width: 80%;
   transition: transform 0.3s ease;
-  margin-bottom: 20px;
+  margin-bottom: 4%;
 }
 
 .film-main .film:hover {
@@ -212,7 +213,7 @@
 }
 
 .film-main .title-show h2 {
-  font-size: 25px;
+  font-size: 180%;
   margin: 0;
   border-bottom: none;
 }
@@ -222,7 +223,8 @@
 }
 
 .film-main .release-date {
-  font-size: 15px;
+  font-size: 100%;
+  margin: 0;
   color: #4f4e4e;
 }
 
@@ -272,14 +274,15 @@
   height: 180px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin: 70px;
+  position: relative;
 }
 
 .left-show-top {
   width: 200px;
   height: 150px;
-  overflow: hidden;
+  margin: 0 5%;
   position: relative;
   display: flex;
   justify-content: center; 
@@ -297,22 +300,26 @@
 }
 
 .right-show-top {
+  width: 80%;
   height: 150px;
-  margin-left: 48px;
 }
 
 .right-top {
   position: relative;
+  height: 80%;
+  margin-right: 5%;
 }
 
-.release-date {
+.show-date {
   position: absolute;
   right: 8px;
   top: 0;
+  font-size: 100%;
 }
 
 .right-top h2 {
-  font-size: 32px;
+  font-size: 200%;
+  font-weight: bold;
   color: #620606;
 }
 
@@ -320,52 +327,76 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 10px;
+  height: 20%;
+  margin: 0 10%;
 }
 
 .comment-link {
+  font-size: 120%;
   text-decoration: none;
-  margin-right: 8px;
+  margin-right: 5%;
 }
 
 .comment-link:hover {
+  font-size: 120%;
   color: #620606;
   text-decoration: underline;
 }
 
-.like-icon, .unlike-icon {
-  margin-right: 8px;
+.like-icon {
+  margin-left: 20%;
 }
 
-.text-selection {
-  width: 600px;
-  margin-top: 30px;
+.film-detail {
+  width: 100%;
+  padding: 8%;
+  border-top: 1px solid #a3a3a3;
+}
+
+.text-selection{
+  font-size: 120%;
+  line-height: 1.8;
 }
 
 .cast-and-staff {
   display: flex;
   width: 100%;
-  max-width: 600px;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 10%;
 }
 
 .cast-section, .staff-section {
-  width: 50%;
-  margin-top: 30px;
+  width: 100%;
+  margin: 5%;
 }
 
 .cast-section h3, .staff-section h3 {
+  font-size: 140%;
+  font-weight: bold;
   color: #620606;
   margin-bottom: 20px;
 }
 
 ul {
   list-style: none;
-  padding: 0;
+  padding: 3%;
+  font-size: 120%;
+  line-height: 1.5;
 }
 
 .production-section {
-  margin: 30px 0;
+  padding: 8% 0;
   text-align: center;
+  border-top: 1px solid #a3a3a3;
+}
+
+.production-section strong {
+  color: #620606;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.production-section a {
+  text-decoration: none;
+  font-size: 120%;
 }
