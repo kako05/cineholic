@@ -6,16 +6,16 @@
       <div class="show-detail">
         <div class="show-top">
           <div class="left-show-top">
-            <%= image_tag @film.poster_image_url, class: "poster" %>
+            <%= image_tag(@film.poster_image_url.present? && @film.poster_image_url != "/global/images/jfdb_noimage.png" ? @film.poster_image_url : asset_path('noimage.png'), class: "poster-image") %>
           </div>
-          <div class="rigth-show-top">
+          <div class="right-show-top">
             <div class="right-top">
-              <small class="release-date">( <%= @film.release_date %> )</small>
+              <small class="show-date">( <%= @film.release_date %> )</small>
               <h2><%= @film.title %></h2>
             </div>
             <div class="right-bottom">
               <div class="comment-link"><%= link_to "レビュー", film_comments_path(@film) %></div>
-              <div calss="comment-link"><%= link_to "投稿", new_film_comment_path(@film) %></div>
+              <div class="comment-link"><%= link_to "投稿", new_film_comment_path(@film) %></div>
               <div id="like-btn">
                 <%= render partial: "likes/like", locals: { film: @film } %>
               </div>
