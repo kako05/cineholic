@@ -1,3 +1,4 @@
+/* トップページ */
 .index-main {
   position: relative;
   width: 100vw;
@@ -117,6 +118,8 @@
   text-decoration: none;
 }
 
+
+/* showing,search,show 共通部分 */
 .film-main {
   display: flex;
   justify-content: center;
@@ -160,6 +163,7 @@
   margin: 32px 0;
 }
 
+/* showing,search 共通部分 */
 .film-main .film {
   display: flex;
   height: 160px;
@@ -250,6 +254,7 @@
   cursor: pointer;
 }
 
+/* showページ */
 .show-detail {
   width: 90%;
   padding: 30px;
@@ -312,18 +317,24 @@
 }
 
 .right-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   margin-top: 10px;
-  text-align: right;
 }
 
 .comment-link {
   text-decoration: none;
-  margin-left: 15px;
+  margin-right: 8px;
 }
 
 .comment-link:hover {
   color: #620606;
   text-decoration: underline;
+}
+
+.like-icon, .unlike-icon {
+  margin-right: 8px;
 }
 
 .text-selection {

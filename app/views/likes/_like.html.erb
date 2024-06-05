@@ -1,0 +1,5 @@
+<% if user_signed_in? && @film.liked_by?(current_user)%>
+   <%=link_to image_tag("like.png", class: "like-icon"), film_likes_path(@film.id),  data: { turbo_method: :delete }, class: "film_likes", remote: true %>
+<% else %>
+  <%=link_to image_tag("unlike.png", class: "like-icon"), film_likes_path(@film.id), data: { turbo_method: :post }, class: "film_likes", remote: true %>
+<% end %>
