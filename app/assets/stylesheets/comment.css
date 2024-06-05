@@ -1,3 +1,4 @@
+/* コメント一覧 */
 .comment-main {
   display: flex;
   justify-content: center;
@@ -95,7 +96,7 @@
   padding: 24px;
 }
 
-
+/* コメント投稿 */
 .new-main {
   display: flex;
   justify-content: center;
@@ -179,6 +180,7 @@
   border: 1px solid #620606;
   cursor: pointer;
   font-size: 20px;
+  vertical-align: middle;
 }
 
 .new-main .post-button:hover {
@@ -195,6 +197,7 @@
   border: 1px solid #620606;
   border-radius: 4px;
   font-size: 20px;
+  vertical-align: middle;
 }
 
 .new-main .comment-back:hover {

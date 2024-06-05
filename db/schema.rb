@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_02_033226) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_05_021537) do
   create_table "casts", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -54,6 +54,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_02_033226) do
     t.index ["title"], name: "index_films_on_title", unique: true, length: 191
   end
 
+  create_table "likes", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "film_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["film_id"], name: "index_likes_on_film_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "trailers", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "role"
@@ -82,4 +91,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_02_033226) do
   add_foreign_key "film_casts", "films"
   add_foreign_key "film_trailers", "films"
   add_foreign_key "film_trailers", "trailers"
+  add_foreign_key "likes", "films"
+  add_foreign_key "likes", "users"
 end

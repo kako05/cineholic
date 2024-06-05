@@ -14,8 +14,11 @@
               <h2><%= @film.title %></h2>
             </div>
             <div class="right-bottom">
-              <%= link_to "レビュー", film_comments_path(@film), class: "comment-link" %>
-              <%= link_to "投稿", new_film_comment_path(@film), class: "comment-link" %>
+              <div class="comment-link"><%= link_to "レビュー", film_comments_path(@film) %></div>
+              <div calss="comment-link"><%= link_to "投稿", new_film_comment_path(@film) %></div>
+              <div id="like-btn">
+                <%= render partial: "likes/like", locals: { film: @film } %>
+              </div>
             </div>
           </div>
         </div>
