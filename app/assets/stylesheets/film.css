@@ -177,7 +177,6 @@
 }
 
 .film-main .left-show {
-  flex: 1;
   width: 130px;
   height: 160px;
   overflow: hidden;
@@ -252,7 +251,7 @@
 }
 
 .show-detail {
-  width: 900px;
+  width: 90%;
   padding: 30px;
   background: #ebebeb;
   border-radius: 8px;
@@ -264,7 +263,7 @@
 }
 
 .show-top {
-  width: 700px;
+  width: 100%;
   height: 180px;
   display: flex;
   align-items: center;
@@ -273,7 +272,6 @@
 }
 
 .left-show-top {
-  flex: 1;
   width: 200px;
   height: 150px;
   overflow: hidden;
@@ -281,6 +279,7 @@
   display: flex;
   justify-content: center; 
   align-items: center;
+  background-color: #070707;
 }
 
 .poster {
@@ -293,13 +292,18 @@
 }
 
 .right-show-top {
+  height: 150px;
   margin-left: 48px;
-  flex-grow: 1;
 }
 
 .right-top {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+}
+
+.release-date {
+  position: absolute;
+  right: 8px;
+  top: 0;
 }
 
 .right-top h2 {

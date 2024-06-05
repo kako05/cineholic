@@ -10,8 +10,8 @@
           </div>
           <div class="rigth-show-top">
             <div class="right-top">
-              <h2><%= @film.title %></h2>
               <small class="release-date">( <%= @film.release_date %> )</small>
+              <h2><%= @film.title %></h2>
             </div>
             <div class="right-bottom">
               <%= link_to "レビュー", film_comments_path(@film), class: "comment-link" %>
