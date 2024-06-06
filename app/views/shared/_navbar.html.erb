@@ -13,10 +13,10 @@
       <% end %>
       <li class="dropdown">
         <div class="dropdown-content">
-          <form class="search-form" action="search" method="get">
-            <input type="text" placeholder="keyword" name="q" style="text-align: right;">
+          <%= form_tag(search_films_films_path, method: "get", class: "search-form") do %>
+            <input type="text" name="q" placeholder="Search" style="text-align: right;">
             <button type="submit">GO</button>
-          </form>
+          <% end %>
         </div>
       </li>
     </ul>

@@ -101,11 +101,22 @@
   display: flex;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   z-index: 1;
 }
 
-.new-main .comment-left, .comment-right {
+.new-main .new-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  width: 60%;
+  max-width: 60vw;
+  box-sizing: border-box;
+  background-color: #a3a3a3;
+}
+
+.new-main .comment-left, .new-main .comment-right {
   position: relative;
   top: 0;
   width: 3%;
@@ -122,64 +133,61 @@
   left: 0;
 }
 
-.new-main .new-content {
+.new-main .new-items {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
-  width: 60%;
-  max-width: 60vw;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: #a3a3a3;
 }
 
 .new-main .new-title {
-  font-size: 50px;
-  margin-top: 24px;
-  margin-bottom: 18px;
+  font-size: 240%;
+  margin-top: 5%;
+  margin-bottom: 4%;
 }
 
-.new-main .field {
+.new-main .comment-field {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.new-main .commentbar {
+.comment-field .commentbar {
   width: 100%;
-  margin: 24px 0; 
 }
 
-.new-main .review-label {
-  font-size: 40px;
+.comment-field .review-label {
+  font-size: 200%;
   color: #620606;
-  margin-top: 32px;
+  margin-top: 4%;
+  margin-bottom: 3%;
 }
 
-.new-main .field textarea {
+.new-main .review-text {
   width: 80%;
-  height: 320px;
-  margin: 48px;
+  height: 280px;
+  margin-bottom: 5%;
   border-radius: 4px;
   outline: none;
+  background-color: #ffffff;
 }
 
 .new-main .comment-actions {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 3%;
+  margin-bottom: 5%;
 }
 
 .new-main .post-button {
-  padding: 8px 12px;
-  margin-right: 10px;
+  padding: 3% 5%;
+  margin-right: 3%;
   border: none;
   border-radius: 4px;
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #620606;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 120%;
   vertical-align: middle;
 }
 
@@ -190,13 +198,13 @@
 
 .new-main .comment-back {
   display: inline-block;
-  padding: 8px 12px;
-  margin-right: 10px;
+  padding: 3% 5%;
+  margin-right: 3%;
   text-decoration: none;
   background-color: #ffffff;
   border: 1px solid #620606;
   border-radius: 4px;
-  font-size: 20px;
+  font-size: 120%;
   vertical-align: middle;
 }
 

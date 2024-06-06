@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       get "search", to: "films#search", as: :search_films
     end
     resources :comments, only: [:index, :new, :create]
-    resource :likes, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
   end
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    get 'like_films', on: :member
+  end
 end

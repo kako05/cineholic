@@ -2,19 +2,21 @@
 <div class="new-main">
   <div class="comment-left"></div>
   <div class="new-content">
-    <h1 class="new-title"><%= @film.title %></h1>
-    <%= form_with(model: [@film, @comment], local: true) do |f| %>
-      <div class="field">
-        <%= image_tag "commentbar.png", class: "commentbar" %>
-        <%= f.label :comment, "レビュー", class: "review-label" %>
-        <%= f.text_area :comment, autofocus: true %>
-        <%= image_tag "commentbar.png", class: "commentbar" %>
-      </div>
-      <div class="comment-actions">
-        <%= f.submit "ホリック", class:"post-button" %>
-        <%= link_to "Back", film_path(@film), class: "comment-back" %>
-      </div>
-    <% end %>
+    <div class="new-items">
+      <h1 class="new-title"><%= @film.title %></h1>
+      <%= form_with(model: [@film, @comment], local: true) do |f| %>
+        <div class="comment-field">
+          <%= image_tag "commentbar.png", class: "commentbar" %>
+          <%= f.label :comment, "レビュー", class: "review-label" %>
+          <%= f.text_area :comment, autofocus: true, class: "review-text" %>
+          <%= image_tag "commentbar.png", class: "commentbar" %>
+        </div>
+        <div class="comment-actions">
+          <%= f.submit "ホリック", class:"post-button" %>
+          <%= link_to "Back", film_path(@film), class: "comment-back" %>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="comment-right"></div>
 </div>

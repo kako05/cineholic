@@ -5,6 +5,7 @@ class Film < ApplicationRecord
   has_many :trailers, through: :film_trailers
   has_many :comments
   has_many :likes
+  has_many :likers, through: :likes, source: :user
 
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
