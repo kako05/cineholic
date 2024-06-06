@@ -1,3 +1,4 @@
+/* サインイン/ログイン/アカウント編集 */
 .sign-up, .log-in, .account-page {
   width: 100vw;
   height: 100vh;
@@ -22,16 +23,16 @@ h2 {
   margin-bottom: 20px;
 }
 
-.field {
+.user-field {
   margin-bottom: 8px;
 }
 
-.field label {
+.user-field label {
   display: block;
   font-weight: bold;
 }
 
-.field input {
+.user-field input {
   width: calc(100% - 22px);
   padding: 10px;
   border: 1px solid #ccc;
@@ -39,28 +40,28 @@ h2 {
   box-sizing: border-box;
 }
 
-.field em {
+.user-field em {
   font-size: 0.9em;
   color: #666;
 }
 
-.field.remember-me {
+.user-field.remember-me {
   display: flex;
   justify-content: flex-end;
   text-align: right;
   align-items: center;
 }
 
-.field.remember-me input[type="checkbox"] {
+.user-field.remember-me input[type="checkbox"] {
   margin-right: 20px;
 }
 
-.actions {
+.user-actions {
   text-align: center;
   margin-top: 8px;
 }
 
-.actions input[type="submit"] {
+.user-actions input[type="submit"] {
   padding: 8px 12px;
   margin-right: 10px;
   border: none;
@@ -72,12 +73,12 @@ h2 {
   font-size: 12px;
 }
 
-.actions input[type="submit"]:hover {
+.user-actions input[type="submit"]:hover {
   color: #ffffff;
   background-color: #620606;
 }
 
-.actions a {
+.user-actions a {
   display: inline-block;
   padding: 8px 12px;
   margin-right: 10px;
@@ -88,7 +89,7 @@ h2 {
   font-size: 12px;
 }
 
-.actions a:hover {
+.user-actions a:hover {
   color: #ffffff;
   background-color: #620606;
 }
@@ -103,69 +104,119 @@ h2 {
   font-size: 10px;
 }
 
+/* マイページ user/show */
 .my-main {
   width: 100vw;
-  height: 100vh;
-  position: relative;
-}
-
-.mypages {
+  min-height: 100vh;
   display: flex;
-  width: 100%;
-  height: 100%;
-  position: relative;
 }
 
 .my-left-page {
-  width: 34%;
-  padding: 30px;
-  background: url('filmline.png') repeat-y right center;
-  background-size: 48px auto;
-  z-index: 2;
+  width: calc(100vw - 66%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
 }
 
-.my-page-top {
+.my-left-items {
+  left: 0;
+  width: 88%;
+}
+
+.my-left-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 8% 0 5% 0;
+  margin: 0 3%;
+  border-bottom: 1px solid #a3a3a3;
 }
 
 .my-name {
-  font-size: 40px;
-  margin-left: 3%;
+  font-size: 200%;
+  font-weight: bold;
+  margin-left: 10%;
 }
 
 .my-edit {
-  margin-right: 20%;
+  margin-right: 10%;
 }
 
-.my-page-bottom {
-  
+.my-left-bottom {
+  left: 0;
+  width: 88%;
+  padding: 10%;
+}
+
+.like-head {
+  font-size: 180%;
+  font-weight: bold;
+  color: #620606;
+  margin-bottom: 3%;
+}
+
+.my-like-lists {
+  padding: 5% 0;
+}
+
+.my-like-film {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 3%;
+  margin: 5% 0;
+}
+
+.my-like-button {
+  width:18%;
+  height: 40%;
+} 
+
+.my-title {
+  width: 120%;
+  height: 40%;
+  font-size: 130%;
+  padding-left: 3%;
+  text-align: left
+}
+
+.my-title:hover {
+  color: #620606;
+}
+
+.my-main .my-left-line {
+  right: 0;
+  top: 0;
+  width: 11.9%;
+  background: url('filmline.png') repeat-y right center;
+  background-size: contain;
 }
 
 .my-right-page {
-  width: 66%;
-  background: url('filmline.png') repeat-y right center;
-  background-size: 48px auto;
-  z-index: 1;
-  position: relative;
+  width: calc(100vw - 34%);
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  flex: 1;
+  align-items: center;
   box-sizing: border-box;
+  position: relative;
+}
+
+.my-right-items {
+  width: 80%;
 }
 
 .my-record {
-  width: 80%;
-  position: absolute;
-  margin-top: 90px;
+  padding-top: 5%;
 }
 
 .record {
-  font-size: 32px;
+  font-size: 240%;
+  font-weight: bold;
   color: #620606;
-  padding: 3%;
+  margin-bottom: 5%;
 }
 
 .my-comments {
@@ -173,23 +224,34 @@ h2 {
 }
 
 .my-comment {
-  height: 240px;
+  height: 1800%;
   background: #ebebeb;
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease;
-  margin-bottom: 20px;
+  margin-bottom: 5%;
+  overflow-y: auto;
 }
 
 .my-comment-area {
-  padding-left: 10px;
+  padding: 3%;
 }
 
 .my-comment-film {
+  font-size: 120%;
   font-weight: bold;
   color: #620606;
-  margin-bottom: 4px;
+  margin: 3% 0;
 }
 
 .my-comment-text {
+  font-size: 100%;
+  margin-bottom: 3%;
+}
+
+.my-main .my-right-line {
+  right: 0;
+  width: 4%;
+  background: url('filmline.png') repeat-y right center;
+  background-size: contain;
 }

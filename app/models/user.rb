@@ -5,4 +5,5 @@ class User < ApplicationRecord
 
   has_many :comments
   has_many :likes
+  has_many :like_films, through: :likes, source: :film
 end

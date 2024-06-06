@@ -1,9 +1,9 @@
 <%= render "shared/navbar" %>
 <div class="my-main">
-  <div class="mypages">
 
-    <div class="my-left-page">
-      <div class="my-page-top">
+  <div class="my-left-page">
+    <div class="my-left-items">
+      <div class="my-left-top">
         <div class="my-name">
           <%= @user.nickname %>
         </div>
@@ -13,15 +13,31 @@
           <% end %>
         </div>
       </div>
-
-      <div class="my-page-bottom">
+      <div class="my-left-bottom">
+        <div class="like-head">お気に入り</div>
         <div class="my-like-lists">
-          <%# each.doでならべる %>
+          <% @likes.each do |film| %>
+            <div class="my-like-film" id="film_<%= film.id %>">
+              <div class="my-like-button">
+                <%= link_to film_likes_path(film), method: :delete, remote: true, class: "like-button", id: "like_button_#{film.id}" do %>
+                  <%= image_tag("like.png", class: "like-button") %>
+                <% end %>
+              </div>
+              <%= link_to film_path(film) do %>
+                <div class="my-title">
+                  <%= film.title %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
+    <div class="my-left-line"></div>
+  </div>
 
-    <div class="my-right-page">
+  <div class="my-right-page">
+    <div class="my-right-items">
       <div class="my-record">
         <h1 class="record">Record</h2>
           <div class="my-comments">
@@ -30,6 +46,9 @@
             <% end %>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="my-right-line"></div>
     </div>
   </div>
 </div>
