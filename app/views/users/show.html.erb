@@ -14,23 +14,24 @@
         </div>
       </div>
       <div class="my-left-bottom">
-        <div class="like-head">お気に入り</div>
-        <div class="my-like-lists">
-          <% @likes.each do |film| %>
-            <div class="my-like-film" id="film_<%= film.id %>">
-              <div class="my-like-button">
-                <%= link_to film_likes_path(film), method: :delete, remote: true, class: "like-button", id: "like_button_#{film.id}" do %>
-                  <%= image_tag("like.png", class: "like-button") %>
-                <% end %>
-              </div>
-              <%= link_to film_path(film) do %>
-                <div class="my-title">
-                  <%= film.title %>
-                </div>
-              <% end %>
-            </div>
+  <div class="like-head">お気に入り</div>
+  <div class="my-like-lists">
+    <% @likes.each do |like| %>
+      <% film = like.film %>
+      <div class="my-like-film" id="film_<%= film.id %>">
+        <div class="my-like-button">
+          <%= link_to film_like_path(film, like), method: :delete, remote: true, class: "like-button", id: "like_button_#{like.id}" do %>
+            <%= image_tag("like.png", class: "like-button") %>
           <% end %>
         </div>
+        <%= link_to film_path(film) do %>
+          <div class="my-title">
+            <%= film.title %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
       </div>
     </div>
     <div class="my-left-line"></div>

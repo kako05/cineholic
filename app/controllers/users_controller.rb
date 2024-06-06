@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @comments = @user.comments.includes(:film)
-    @likes = @user.like_films
+    @likes = @user.likes.includes(:film)
   end
 
   def edit
