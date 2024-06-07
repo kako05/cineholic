@@ -1,4 +1,5 @@
-document.addEventListener('turbo:load', function() {
+const userlike = () => {
+  document.addEventListener('turbo:load', function() {
   document.querySelectorAll('.like-button').forEach(function(button) {
     button.addEventListener('click', function(event) {
       event.preventDefault();
@@ -31,3 +32,7 @@ document.addEventListener('turbo:load', function() {
     });
   });
 });
+};
+
+window.addEventListener("turbo:load", userlike);
+window.addEventListener("turbo:render", userlike);
