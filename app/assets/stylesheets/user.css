@@ -11,7 +11,7 @@
 
 .container {
   background: #ffffff;
-  padding: 20px;
+  padding: 5%;
   border-radius: 8px;
   box-shadow: 0 0 10px black;
   width: 100%;
@@ -19,12 +19,16 @@
 }
 
 h2 {
+  color: #620606;
+  font-size: 140%;
+  font-weight: 400;
   text-align: left;
-  margin-bottom: 20px;
+  margin-bottom: 5%;
 }
 
 .user-field {
-  margin-bottom: 8px;
+  height: 12vh;
+  margin-bottom: 5%;
 }
 
 .user-field label {
@@ -34,10 +38,12 @@ h2 {
 
 .user-field input {
   width: calc(100% - 22px);
-  padding: 10px;
-  border: 1px solid #ccc;
+  height: 7vh;
+  padding: 2%;
+  border: 1px solid black;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 120%;
 }
 
 .user-field em {
@@ -45,32 +51,21 @@ h2 {
   color: #666;
 }
 
-.user-field.remember-me {
-  display: flex;
-  justify-content: flex-end;
-  text-align: right;
-  align-items: center;
-}
-
-.user-field.remember-me input[type="checkbox"] {
-  margin-right: 20px;
-}
-
 .user-actions {
   text-align: center;
-  margin-top: 8px;
+  margin-top: 5%;
 }
 
 .user-actions input[type="submit"] {
-  padding: 8px 12px;
-  margin-right: 10px;
+  padding: 2% 3%;
+  margin-right: 3%;
   border: none;
   border-radius: 4px;
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #620606;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 105%;
 }
 
 .user-actions input[type="submit"]:hover {
@@ -80,13 +75,13 @@ h2 {
 
 .user-actions a {
   display: inline-block;
-  padding: 8px 12px;
-  margin-right: 10px;
+  padding: 3% 4%;
+  margin-right: 3%;
   text-decoration: none;
   background-color: #ffffff;
   border: 1px solid #620606;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 100%;
 }
 
 .user-actions a:hover {
@@ -95,13 +90,13 @@ h2 {
 }
 
 .error_messages {
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 3%;
+  margin-bottom: 2%;
   border-radius: 4px;
 }
 
 #error_explanation {
-  font-size: 10px;
+  font-size: 80%;
 }
 
 /* マイページ user/show */
@@ -109,6 +104,7 @@ h2 {
   width: 100vw;
   min-height: 100vh;
   display: flex;
+  box-sizing: border-box;
 }
 
 .my-left-page {
@@ -144,10 +140,31 @@ h2 {
   margin-right: 10%;
 }
 
+.edit-icon-link {
+  position: relative;
+  display: inline-block;
+}
+
+.edit-icon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; 
+  border: 2px solid #620606;
+  opacity: 0;
+  transition: opacity 0.3s; 
+}
+
+.edit-icon-link:hover .edit-icon-overlay {
+  opacity: 1; 
+}
+
 .my-left-bottom {
   left: 0;
-  width: 88%;
-  padding: 10%;
+  width: 100%;
+  padding: 10% 5% 10% 10%;
 }
 
 .like-head {
@@ -163,21 +180,20 @@ h2 {
 
 .my-like-film {
   display: flex;
-  align-items: center;
   position: relative;
-  padding: 3%;
-  margin: 5% 0;
+  
 }
 
 .my-like-button {
-  width:18%;
+  width: 17%;
   height: 40%;
 } 
 
 .my-title {
-  width: 120%;
-  height: 40%;
+  width: 130%;
+  height: 80px;
   font-size: 130%;
+  padding-top: 3%;
   padding-left: 3%;
   text-align: left
 }
@@ -189,7 +205,7 @@ h2 {
 .my-main .my-left-line {
   right: 0;
   top: 0;
-  width: 11.9%;
+  width: 11.8%;
   background: url('filmline.png') repeat-y right center;
   background-size: contain;
 }
@@ -198,17 +214,22 @@ h2 {
   width: calc(100vw - 34%);
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   position: relative;
 }
 
 .my-right-items {
-  width: 80%;
+  left: 0;
+  width: 93.6%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .my-record {
+  left: 0;
+  width: 80%;
   padding-top: 5%;
 }
 
@@ -251,7 +272,7 @@ h2 {
 
 .my-main .my-right-line {
   right: 0;
-  width: 4%;
+  width: 6.4%;
   background: url('filmline.png') repeat-y right center;
   background-size: contain;
 }

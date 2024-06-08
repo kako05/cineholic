@@ -8,25 +8,25 @@
           <%= @user.nickname %>
         </div>
         <div class="my-edit">
-          <%= link_to(edit_user_path(@user)) do %>
-            <%= image_tag "icon.png", size: '50x50', class: "icon" %>
-          <% end %>
+          <a href="<%= edit_user_path(@user) %>" class="edit-icon-link">
+            <%= image_tag "icon.png", size: '50x50', class: "edit-icon" %>
+            <div class="edit-icon-overlay"></div>
+          </a>
         </div>
       </div>
       <div class="my-left-bottom">
         <div class="like-head">お気に入り</div>
-          <div class="my-like-lists">
-            <% @likes.each do |like| %>
-              <% film = like.film %>
+        <div class="my-like-lists">
+          <% @likes.each do |like| %>
+            <% film = like.film %>
+            <%= turbo_frame_tag dom_id(film, :like) do %>
               <div class="my-like-film" id="film_<%= film.id %>">
                 <div class="my-like-button">
-                  <%= turbo_frame_tag dom_id(film, :like) do %>
-                    <% if user_signed_in? && film.liked_by?(current_user) %>
-                      <% like = film.likes.find_by(user: current_user) %>
-                      <%= link_to image_tag("like.png", class: "like-icon"), film_like_path(film.id, like.id), data: { turbo_method: :delete, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
-                    <% else %>
-                      <%= link_to image_tag("unlike.png", class: "like-icon"), film_likes_path(film.id), data: { turbo_method: :post, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
-                    <% end %>
+                  <% if user_signed_in? && film.liked_by?(current_user) %>
+                    <% like = film.likes.find_by(user: current_user) %>
+                    <%= link_to image_tag("like.png", class: "like-icon"), film_like_path(film.id, like.id, referer: 'my_page'), data: { turbo_method: :delete, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
+                  <% else %>
+                    <%= link_to image_tag("unlike.png", class: "like-icon"), film_likes_path(film.id), data: { turbo_method: :post, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
                   <% end %>
                 </div>
                 <%= link_to film_path(film) do %>
@@ -36,7 +36,7 @@
                 <% end %>
               </div>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>

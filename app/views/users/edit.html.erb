@@ -4,17 +4,17 @@
     <%= form_with model: current_user, local: true do |f|%>
       <%= render "devise/shared/error_messages", resource: current_user %>
 
-      <div class='field'>
+      <div class='user-field'>
         <%= f.label :nickname%><br />
         <%= f.text_field :nickname, autofocus: true%>
       </div>
 
-      <div class="field">
+      <div class="user-field">
         <%= f.label :email %><br />
         <%= f.email_field :email %>
       </div>
 
-      <div class='actions'>
+      <div class='user-actions'>
         <%= f.submit "Update", class: 'btn'%>
         <%= link_to "Back", user_path(current_user) %>
       </div>
