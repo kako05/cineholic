@@ -3,24 +3,17 @@
     <h2>Log in</h2>
     <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
 
-      <div class="field">
+      <div class="user-field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true %>
       </div>
 
-      <div class="field">
+      <div class="user-field">
         <%= f.label :password %><br />
         <%= f.password_field :password, autocomplete: "off" %>
       </div>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="field remember-me">
-          <%= f.label :remember_me %><br>
-          <%= f.check_box :remember_me %>
-        </div>
-      <% end %>
-
-      <div class="actions">
+      <div class="user-actions">
         <%= f.submit "Log in" %>
         <%= link_to "Back", root_path %>
       </div>

@@ -1,21 +1,17 @@
 class LikesController < ApplicationController
-  before_action :set_film, only: [:create]
+  before_action :set_film, only: [:create, :destroy]
 
   def create
-    like = current_user.likes.build(film_id: params[:film_id])
-    if like.save
-      render json: { status: 'success', film_id: @film.id }
-    else
-      render json: { status: 'error' }, status: :unprocessable_entity
-    end
+    current_user.likes.create(film: @film)
+    render partial: 'likes/like', locals: { film: @film }
   end
 
   def destroy
-    like = Like.find_by(film_id: params[:film_id], user_id: current_user.id)
-    if like.destroy
-      render json: { status: 'success'}
+    current_user.likes.find_by(film: @film)&.destroy
+    if params[:referer] == 'my_page'
+      render turbo_stream: turbo_stream.remove(helpers.dom_id(@film, :like))
     else
-      render json: { status: 'error' }, status: :unprocessable_entity
+      redirect_to request.referer || root_path
     end
   end
 
