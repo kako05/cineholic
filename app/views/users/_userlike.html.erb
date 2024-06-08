@@ -1,9 +1,0 @@
-<% if user_signed_in? && @likes.include?(film) %>
-  <%= link_to film_likes_path(film), method: :delete, remote: true, class: "like-button" do %>
-    <%= image_tag("unlike.png", class: "like-button") %>
-  <% end %>
-<% else %>
-  <%= link_to film_likes_path(film), method: :post, remote: true, class: "like-button" do %>
-    <%= image_tag("like.png", class: "like-button") %>
-  <% end %>
-<% end %>

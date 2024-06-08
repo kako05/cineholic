@@ -14,24 +14,30 @@
         </div>
       </div>
       <div class="my-left-bottom">
-  <div class="like-head">お気に入り</div>
-  <div class="my-like-lists">
-    <% @likes.each do |like| %>
-      <% film = like.film %>
-      <div class="my-like-film" id="film_<%= film.id %>">
-        <div class="my-like-button">
-          <%= link_to film_like_path(film, like), method: :delete, remote: true, class: "like-button", id: "like_button_#{like.id}" do %>
-            <%= image_tag("like.png", class: "like-button") %>
-          <% end %>
-        </div>
-        <%= link_to film_path(film) do %>
-          <div class="my-title">
-            <%= film.title %>
+        <div class="like-head">お気に入り</div>
+          <div class="my-like-lists">
+            <% @likes.each do |like| %>
+              <% film = like.film %>
+              <div class="my-like-film" id="film_<%= film.id %>">
+                <div class="my-like-button">
+                  <%= turbo_frame_tag dom_id(film, :like) do %>
+                    <% if user_signed_in? && film.liked_by?(current_user) %>
+                      <% like = film.likes.find_by(user: current_user) %>
+                      <%= link_to image_tag("like.png", class: "like-icon"), film_like_path(film.id, like.id), data: { turbo_method: :delete, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
+                    <% else %>
+                      <%= link_to image_tag("unlike.png", class: "like-icon"), film_likes_path(film.id), data: { turbo_method: :post, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <%= link_to film_path(film) do %>
+                  <div class="my-title">
+                    <%= film.title %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+        </div>
       </div>
     </div>
     <div class="my-left-line"></div>
@@ -40,16 +46,14 @@
   <div class="my-right-page">
     <div class="my-right-items">
       <div class="my-record">
-        <h1 class="record">Record</h2>
-          <div class="my-comments">
-            <% @comments.each do |comment| %>
-              <%= render partial: "show", locals: { comment: comment } %>
-            <% end %>
-          </div>
+        <h1 class="record">Record</h1>
+        <div class="my-comments">
+          <% @comments.each do |comment| %>
+            <%= render partial: "show", locals: { comment: comment } %>
+          <% end %>
         </div>
       </div>
     </div>
     <div class="my-right-line"></div>
-    </div>
   </div>
 </div>
