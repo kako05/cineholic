@@ -1,7 +1,8 @@
-<%= turbo_frame_tag dom_id(film, :like)do %>
-<% if user_signed_in? && @film.liked_by?(current_user)%>
-  <%=link_to image_tag("like.png", class: "like-icon"), film_likes_path(@film.id),  data: { turbo_method: :delete }, class: "film_likes" %>
-<% else %>
-  <%=link_to image_tag("unlike.png", class: "like-icon"), film_likes_path(@film.id), data: { turbo_method: :post }, class: "film_likes"%>
-<% end %>
+<%= turbo_frame_tag dom_id(film, :like) do %>
+  <% if user_signed_in? && film.liked_by?(current_user) %>
+    <% like = film.likes.find_by(user: current_user) %>
+    <%= link_to image_tag("like.png", class: "like-icon"), film_like_path(film.id, like.id),  data: { turbo_method: :delete, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
+  <% else %>
+    <%= link_to image_tag("unlike.png", class: "like-icon"), film_likes_path(film.id), data: { turbo_method: :post, turbo_frame: dom_id(film, :like) }, class: "film_likes"%>
+  <% end %>
 <% end %>

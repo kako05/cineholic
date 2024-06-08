@@ -213,7 +213,9 @@
 }
 
 .film-main .title-show h2 {
-  font-size: 180%;
+  font-size: 160%;
+  width: 80%;
+  height: 50px;
   margin: 0;
   border-bottom: none;
 }
