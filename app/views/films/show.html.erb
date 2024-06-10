@@ -6,7 +6,7 @@
       <div class="show-detail">
         <div class="show-top">
           <div class="left-show-top">
-            <%= image_tag(@film.poster_image_url.present? && @film.poster_image_url != "/global/images/jfdb_noimage.png" ? @film.poster_image_url : asset_path('noimage.png'), class: "poster-image") %>
+            <%= image_tag(@film.poster_image_url.present? && @film.poster_image_url != "/global/images/jfdb_noimage.png" ? @film.poster_image_url : asset_path('noimage.png'), class: "show-poster-image") %>
           </div>
           <div class="right-show-top">
             <div class="right-top">
