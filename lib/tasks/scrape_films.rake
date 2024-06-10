@@ -117,7 +117,7 @@ namespace :films do
         movie_count += 1
       end
       puts "Movies fetched from page #{page_number}: #{movie_count}"
-      next_page_link = index_doc.css('.pagination a.page_link').first
+      next_page_link = index_doc.css('.pagination li.page-item').first
       break unless next_page_link
 
       index_url = "#{base_url}#{next_page_link.attr('href')}"
