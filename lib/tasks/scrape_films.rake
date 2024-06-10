@@ -6,9 +6,9 @@ namespace :films do
   task scrape_6787: :environment do
     base_url = 'http://jfdb.jp'
     page_size = 25
-    max_pages = 20
+    max_pages = 270
 
-    (2..max_pages).each do |page_number|
+    (250..max_pages).each do |page_number|
       index_url = "#{base_url}/search/title?ORDER=RELE_D&PAGE=#{page_number}" # 公開日で降順に並べ替え
       puts "Fetching movies from page #{page_number}: #{index_url}"
       begin
