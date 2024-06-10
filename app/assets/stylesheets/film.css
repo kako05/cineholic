@@ -314,12 +314,13 @@
 
 .show-date {
   position: absolute;
-  right: 8px;
+  right: 2%;
   top: 0;
   font-size: 100%;
 }
 
 .right-top h2 {
+  width: 80%;
   font-size: 200%;
   font-weight: bold;
   color: #620606;
