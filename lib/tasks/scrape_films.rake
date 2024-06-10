@@ -6,7 +6,7 @@ namespace :films do
   task scrape_6787: :environment do
     base_url = 'http://jfdb.jp'
     page_size = 25
-    max_pages = 2
+    max_pages = 20
 
     (1..max_pages).each do |page_number|
       sleep 1
