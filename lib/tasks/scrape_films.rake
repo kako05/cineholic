@@ -9,6 +9,7 @@ namespace :films do
     max_pages = 2
 
     (1..max_pages).each do |page_number|
+      sleep 1
       index_url = "#{base_url}/search/title?ORDER=RELE_D&PAGE=#{page_number}" # 公開日で降順に並べ替え
       puts "Fetching movies from page #{page_number}: #{index_url}"
       begin
