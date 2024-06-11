@@ -2,5 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "userlikes"
+import "opening"
 
 //= require userlikes
+//= require opening

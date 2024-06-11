@@ -2,6 +2,11 @@
 <div class="index-main">
   <div class="curtain">
     <%= image_tag "curtain.jpg", class: "curtain-image" %>
+    <video id="opening-video" data: {turbo: false} autoplay muted class="open-video"
+           data-webm="<%= asset_path('opennuke.webm') %>"
+           data-mp4="<%= asset_path('opennuke.mp4') %>">
+      Your browser does not support the video tag.
+    </video>
     <div class="contents">
       <%= form_with(url: search_films_films_path, method: "get", local: true, class: "main-search-form") do |form| %>
         <div class="top-content">
