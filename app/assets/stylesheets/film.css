@@ -189,6 +189,8 @@
   width: 80%;
   transition: transform 0.3s ease;
   margin-bottom: 4%;
+  text-decoration: none;
+  color: inherit;
 }
 
 .film-main .film:hover {
@@ -235,9 +237,9 @@
   border-bottom: none;
 }
 
-.film-main .title-show h2 a {
+/* .film-main .title-show h2 a {
   text-decoration: none;
-}
+} */
 
 .film-main .release-date {
   font-size: 100%;
