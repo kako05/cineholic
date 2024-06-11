@@ -170,7 +170,7 @@ h2 {
   font-size: 180%;
   font-weight: bold;
   color: #620606;
-  margin-bottom: 3%;
+  margin-bottom: 10%;
 }
 
 .my-like-lists {
@@ -180,20 +180,20 @@ h2 {
 .my-like-film {
   display: flex;
   position: relative;
-  
+  justify-content: left;
 }
 
 .my-like-button {
-  width: 17%;
-  height: 40%;
+  width: 4vw;
+  height: 8vh;
+  left: 0;
 } 
 
 .my-title {
-  width: 130%;
-  height: 80px;
-  font-size: 130%;
-  padding-top: 3%;
-  padding-left: 3%;
+  width: 20vw;
+  height: 15vh;
+  font-size: 120%;
+  padding: 0 3% 3% 3%;
   text-align: left
 }
 
@@ -244,7 +244,7 @@ h2 {
 }
 
 .my-comment {
-  height: 1800%;
+  height: 30vh;
   background: #ebebeb;
   border-radius: 8px;
   overflow: hidden;
@@ -257,11 +257,39 @@ h2 {
   padding: 3%;
 }
 
+.top-my-comment-area {
+  width: 45vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .my-comment-film {
   font-size: 120%;
   font-weight: bold;
   color: #620606;
   margin: 3% 0;
+}
+
+.comment-icon-link {
+  position: relative;
+  display: inline-block;
+}
+
+.comment-icon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; 
+  border: 2px solid #620606;
+  opacity: 0;
+  transition: opacity 0.3s; 
+}
+
+.comment-icon-link:hover .comment-icon-overlay {
+  opacity: 1; 
 }
 
 .my-comment-text {

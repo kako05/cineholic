@@ -1,0 +1,23 @@
+<%= render "shared/navbar" %>
+<div class="new-main">
+  <div class="comment-left"></div>
+  <div class="new-content">
+    <div class="new-items">
+      <h1 class="new-title"><%= @film.title %></h1>
+      <%= form_with(model: [@film, @comment], local: true) do |f| %>
+        <div class="comment-field">
+          <%= image_tag "commentbar.png", class: "commentbar" %>
+          <%= f.label :comment, "編集", class: "review-label" %>
+          <%= f.text_area :comment, autofocus: true, class: "review-text" %>
+          <%= image_tag "commentbar.png", class: "commentbar" %>
+        </div>
+        <div class="edit-comment-actions">
+          <%= f.submit "ホリック", class:"edit-button" %>
+          <%= link_to "Back", user_path(@comment.user), class: "comment-edit-back" %>
+          <%= link_to "Delete", film_comment_path(@film, @comment), data: { turbo_method: :delete }, class: "delete-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="comment-right"></div>
+</div>

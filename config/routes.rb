@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get "showing", to: "films#showing", as: :showing_films
       get "search", to: "films#search", as: :search_films
     end
-    resources :comments, only: [:index, :new, :create]
+    resources :comments
     resources :likes, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update] do

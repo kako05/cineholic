@@ -1,8 +1,14 @@
 <div class="my-comment">
   <div class="my-comment-area">
-    <div class="my-comment-film">
-      <%= link_to comment.film.title, film_path(comment.film) %> 
-    </div>
+    <div class="top-my-comment-area">
+      <div class="my-comment-film">
+        <%= link_to comment.film.title, film_path(comment.film) %> 
+      </div>
+      <a href="<%= edit_film_comment_path(comment.film, comment) %>" class="comment-icon-link">
+        <%= image_tag "icon.png", size: '30x30', class: "comment-icon" %>
+        <div class="comment-icon-overlay"></div>
+      </a>
+      </div>
     <div class="my-comment-text">
       <%= comment.comment %>
     </div>
