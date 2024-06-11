@@ -9,6 +9,8 @@
 
 # URL
 http://18.178.57.99
+テストユーザー情報1 (nickname:たろう e-mail:taro@taro password:taro111)
+テストユーザー情報2 (nickname:はなこ e-mail:hana@hana password:hana111)
 
 # テスト用アカウント
 - Basic認証ID :admin
