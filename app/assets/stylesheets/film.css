@@ -277,14 +277,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 70px;
+  margin: 10% 10% 3% 10%;
   position: relative;
 }
 
 .left-show-top {
   width: 30%;
-  height: 30vh;
-  margin: 0 5%;
+  height: 25vh;
+  margin: 0 3% 0 5%;
   position: relative;
   display: flex;
   justify-content: center; 
@@ -309,7 +309,7 @@
 .right-top {
   position: relative;
   height: 80%;
-  margin-right: 5%;
+  margin-right: 1%;
 }
 
 .show-date {
@@ -320,10 +320,12 @@
 }
 
 .right-top h2 {
-  width: 80%;
+  width: 70%;
   font-size: 200%;
   font-weight: bold;
   color: #620606;
+  padding-top: 3%;
+  padding-right: 5%;
 }
 
 .right-bottom {
@@ -331,7 +333,8 @@
   justify-content: flex-end;
   align-items: center;
   height: 20%;
-  margin: 0 10%;
+  margin-top: 3%;
+  margin-right: 10%;
 }
 
 .comment-link {
