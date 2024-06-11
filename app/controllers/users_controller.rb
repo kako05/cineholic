@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to '#'
+      redirect_to user(@user)
     else
       render :edit, status: :unprocessable_entity
     end
