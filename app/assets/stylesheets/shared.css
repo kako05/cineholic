@@ -114,3 +114,60 @@
 .menu:hover .lists {
   display: flex;
 }
+
+
+
+
+/* タブレット用スタイル */
+@media (max-width: 1024px) {
+  .navbar {
+    height: 70px;
+    padding: 0 30px;
+  }
+
+  .logo .title-icon {
+    width: 150px;
+  }
+
+  .menu img {
+    width: 36px;
+  }
+
+  .lists {
+    top: 30px;
+  }
+}
+
+/* スマートフォン用スタイル */
+@media (max-width: 599px) {
+  .navbar {
+    height: 60px;
+    padding: 0 20px;
+  }
+
+  .logo .title-icon {
+    width: 120px;
+  }
+
+  .menu img {
+    width: 30px;
+  }
+
+  .lists {
+    top: 25px;
+    right: 10px;
+    left: auto;
+  }
+
+  .lists li {
+    padding: 8px;
+  }
+
+  .search-form input {
+    width: 100px;
+  }
+
+  .search-form button {
+    padding: 3px 7px;
+  }
+}

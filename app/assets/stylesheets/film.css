@@ -132,7 +132,16 @@
 
 .bottom-content a {
   text-decoration: none;
+  padding: 0 0.5em;
+  display: inline-block;
 }
+
+.bottom-content a:hover {
+  color: #430909;
+  border-radius: 50%;
+  background-color: #eaabab;
+}
+
 
 
 /* showing,search,show 共通部分 */
@@ -422,4 +431,71 @@ ul {
 .production-section a {
   text-decoration: none;
   font-size: 120%;
+}
+
+
+
+
+
+
+/* タブレット用スタイル */
+@media (max-width: 1024px) {
+  .curtain-image, .open-video {
+    object-fit: cover;
+  }
+
+  .contents {
+    max-width: 50vw;
+    align-items: center;
+  }
+
+  .top-content label {
+    width: auto;
+  }
+
+  .search-input {
+    max-width: 250px;
+  }
+}
+
+
+
+/* スマートフォン用スタイル */
+@media (max-width: 599px) {
+  .curtain-image, .open-video {
+    object-fit: cover;
+  }
+  
+  .contents {
+    max-width: 80vw;
+    align-items: center;
+  }
+
+  .top-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .top-content label {
+    width: 100%;
+    padding-left: 30%;
+    white-space: nowrap;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-input {
+    max-width: 200px;
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .search-btn {
+    width: 20%;
+    height: 25px;
+    font-size: 12px;
+  }
 }
