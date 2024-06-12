@@ -19,14 +19,15 @@ http://18.178.57.99
 
 
 # 利用方法
-- 検索はサインインなしで利用可能
+- 検索はユーザー登録なしで利用可能
 - ひらがな、カタカナ、漢字、英字から検索可能
-- 作品をクリックすると作品の詳細が見られる
-- サインインするとマイペ-ジ、レビュー投稿、お気に入り等の機能が利用可能
+- 上映作品を最新順で見ることが可能
+- 作品をクリックすると作品の詳細が見られ、公式ページに遷移することも可能
+- サインインするとマイページ、レビュー投稿、お気に入り等の機能が利用可能
 
 
 # アプリ開発の背景
-- 自分が次に仕事一緒にするスタッフの過去作を見る時に
+- 映画スタッフをしていたときに、次に一緒に仕事をするスタッフの過去作が見たいとき、
   スタッフ名から検索できる場所が少なく、探すのが大変だった
 - 映画館で、観客が上映中の作品を担当した技術スタッフや、
   映画賞などで受賞した技術スタッフについて
@@ -46,44 +47,41 @@ http://18.178.57.99
 
 ## users テーブル
 
-| Column             | Type   | Options                   |
-| ------------------ | ------ | ------------------------- |
-| nickname           | string | null: false               |
-| email              | string | null: false, unique: true |
-| encrypted_password | string | null: false               |
+| Column             | Type   | Options      |
+| ------------------ | ------ | ------------ |
+| nickname           | string | null: false  |
+| email              | string | null: false  |
+| encrypted_password | string | null: false  |
 
 
 ### Association
 
-- has_many :likes
-- has_many :films, through: :likes
 - has_many :comments
-- has_many :films, through: :comments
+- has_many :likes, dependent: :destroy
+- has_many :like_films, through: :likes, source: :film
 
 
 
 ## films テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| title            | string     | null: false                    |
-| description      | text       |                                |
-| release_date     | string     |                                |
-| poster_image_url | string     |                                |
-| link             | string     |                                |
-| comment          | references | null: false, foreign_key: true |
-| like             | references | null: false, foreign_key: true |
+| Column           | Type       | Options       |
+| ---------------- | ---------- | ------------- |
+| title            | text       |               |
+| description      | text       |               |
+| release_date     | string     |               |
+| poster_image_url | string     |               |
+| link             | string     |               |
 
 
 ### Association
 
-- has_many :users, through: :comments
-- has_many :likes
-- has_many :comments
-- has_many :film_casts
+- has_many :film_casts, dependent: :destroy
 - has_many :casts, through: :film_casts
-- has_many :film_trailers
+- has_many :film_trailers, dependent: :destroy
 - has_many :trailers, through: :film_trailers
+- has_many :comments, dependent: :destroy
+- has_many :likes, dependent: :destroy
+- has_many :likers, through: :likes, source: :user
 
 
 
@@ -97,16 +95,16 @@ http://18.178.57.99
 ### Association
 
 - has_many :films, through: :film_casts
-- has_many :film_casts
+- has_many :film_casts, dependent: :destroy
 
 
 
-## film_casts　テーブル
+## film_casts テーブル
 
-| Column | Type       | Options              |
-| ------ | ---------- | -------------------- |
-| film   | references | foreign_key: true    |
-| cast   | references | foreign_key: true    |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| film   | references | null: false, foreign_key: true |
+| cast   | references | foreign_key: true              |
 
 
 ### Association
@@ -116,35 +114,35 @@ http://18.178.57.99
 
 
 
-## staffs　テーブル
+## trailers テーブル
 
 | Column        | Type     | Options       |
 | ------------- | -------- | ------------- |
 | name          | string   |               |
 | role          | string   |               |
-| production    | string   |               |
+| production    | text     |               |
 | official_site | string   |               |
 | text          | text     |               |
 
 
 ### Association
 
-- has_many :films, through: :film_staffs
-- has_many :film_staffs
+- has_many :films, through: :film_trailers
+- has_many :film_trailers, dependent: :destroy
 
 
 
-## film_staffs　テーブル
+## film_trailers 　テーブル
 
-| Column  | Type       | Options              |
-| ------- | ---------- | -------------------- |
-| film    | string     |                      |
-| trailer | references | foreign_key: true    |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| film    | references | null: false, foreign_key: true |
+| trailer | references | foreign_key: true              |
 
 ### Association
 
 - belongs_to :film
-- belongs_to :cast
+- belongs_to :trailer
 
 
 
@@ -159,18 +157,16 @@ http://18.178.57.99
 
 - belongs_to :user
 - belongs_to :film
-- belongs_to :comment
 
 
 
 ## comments テーブル
 
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| text     | text       |                                |
-| score    | integer    | null: false                    |
-| user     | references | null: false, foreign_key: true |
-| film     | references | null: false, foreign_key: true |
+| Column   | Type     | Options      |
+| -------- | -------- | ------------ |
+| comment  | text     |              |
+| user     | integer  | null: false  |
+| film     | integer  | null: false  |
 
 ### Association
 
@@ -183,7 +179,7 @@ http://18.178.57.99
 - HTML,SCSS,JavaScript
 
 ## バックエンド
-- Ruby, Ruby on Rails7.0.0
+- Ruby3.2.0, Ruby on Rails7.0.0
 
 ## データベース
 - MySQL5.7.44
