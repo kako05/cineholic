@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true
 
   has_many :comments
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :like_films, through: :likes, source: :film
 
   def self.authenticate(email, password)
