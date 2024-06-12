@@ -21,15 +21,8 @@
             <% film = like.film %>
             <%= turbo_frame_tag dom_id(film, :like) do %>
               <div class="my-like-film" id="film_<%= film.id %>">
-                <div class="my-like-button">
-                  <% if user_signed_in? && film.liked_by?(current_user) %>
-                    <% like = film.likes.find_by(user: current_user) %>
-                    <%= link_to image_tag("like.png", class: "like-icon"), film_like_path(film.id, like.id, referer: 'my_page'), data: { turbo_method: :delete, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
-                  <% else %>
-                    <%= link_to image_tag("unlike.png", class: "like-icon"), film_likes_path(film.id), data: { turbo_method: :post, turbo_frame: dom_id(film, :like) }, class: "film_likes" %>
-                  <% end %>
-                </div>
-                <%= link_to film_path(film) do %>
+                <%= render partial: "like", locals: { film: film } %>
+                <%= link_to film_path(film), data: { turbo: false } do %>
                   <div class="my-title">
                     <%= film.title %>
                   </div>
