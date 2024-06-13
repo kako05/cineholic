@@ -11,7 +11,7 @@ class FilmSearchQuery
       # 入力されたキーワードを正規化
       normalized_keywords = normalize_search_term(@params[:q_cont])
       # データベースからの取得結果も正規化
-      films = films.joins(:casts, :trailers, :film_casts, :film_trailers).distinct
+      films = films.left_outer_joins(:casts, :trailers, :film_casts, :film_trailers).distinct
       # 各キーワードと条件を結合してクエリを作成
       conditions, values = build_conditions_and_values(normalized_keywords)
       full_query = conditions.join(' OR ')
