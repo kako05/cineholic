@@ -1,4 +1,5 @@
 class FilmSearchQuery
+  require 'romaji'
   def initialize(params)
     @params = params
   end

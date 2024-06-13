@@ -1,4 +1,5 @@
 class FilmsController < ApplicationController
+  require 'romaji'
   before_action :set_q, only: [:index, :search]
 
   def index

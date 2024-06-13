@@ -191,7 +191,7 @@
 /* showing,search 共通部分 */
 .film-main .film {
   display: flex;
-  height: 25vh;
+  height: 30vh;
   background: #ebebeb;
   border-radius: 8px;
   overflow: hidden;
@@ -209,10 +209,10 @@
 
 .film-main .left-show {
   width: 30%;
-  height: 25vh;
+  height: 30vh;
   position: relative;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   background-color: #070707;
   overflow: hidden;
@@ -222,7 +222,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 25vh;
+  max-height: 30vh;
   object-fit: contain;
   display: block;
 }
@@ -230,6 +230,9 @@
 .film-main .right-show {
   flex: 2;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .film-main .title-show {
@@ -246,14 +249,11 @@
   border-bottom: none;
 }
 
-/* .film-main .title-show h2 a {
-  text-decoration: none;
-} */
-
 .film-main .release-date {
   font-size: 100%;
   margin: 0;
   color: #4f4e4e;
+  white-space: nowrap;
 }
 
 .film-main .text-show {
@@ -264,6 +264,9 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 3;
+  margin-top: auto;
+  margin-bottom: 3%;
+  
 }
 
 .page {
@@ -440,6 +443,7 @@ ul {
 
 /* タブレット用スタイル */
 @media (max-width: 1024px) {
+  /* トップページ */
   .curtain-image, .open-video {
     object-fit: cover;
   }
@@ -456,12 +460,71 @@ ul {
   .search-input {
     max-width: 250px;
   }
+
+  /* 作品一覧ページ */
+  .film-main .shows {
+    width: 100%;
+    margin: 0;
+  }
+
+  .film-main .film {
+    width: 90%;
+    margin-bottom: 3%;
+    height: auto;
+  }
+
+  .film-main .left-show {
+    height: 100%;
+    padding: 0;
+  }
+
+  .film-main .index-poster-image {
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .film-main .right-show {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .film-main .title-show {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 10vh;
+  }
+
+  .film-main .title-show h2 {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;;
+  }
+
+  .film-main .release-date {
+    margin-top: auto;
+    align-self: flex-end
+  }
+
+  .film-main .text-show {
+    align-items: flex-end;
+    margin-bottom: 3%;
+  }
 }
+
+
 
 
 
 /* スマートフォン用スタイル */
 @media (max-width: 599px) {
+  /* トップページ */
   .curtain-image, .open-video {
     object-fit: cover;
   }
@@ -497,5 +560,58 @@ ul {
     width: 20%;
     height: 25px;
     font-size: 12px;
+  }
+
+  /* 作品一覧ページ */
+  .film-main .film {
+    width: 90%;
+    height: auto;
+    margin-bottom: 5%;
+    flex-direction: column;
+  }
+
+  .film-main .left-show {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .film-main .index-poster-image {
+    height: 25vh;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+
+  .film-main .right-show {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .film-main .title-show {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 10vh;
+  }
+
+  .film-main .title-show h2 {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .film-main .release-date {
+    margin-top: auto;
+    align-self: flex-end
+  }
+
+  .film-main .text-show {
+    align-items: flex-end;
+    margin-bottom: 3%;
   }
 }
