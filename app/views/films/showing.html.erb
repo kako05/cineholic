@@ -7,7 +7,15 @@
         <%= render partial: "film", locals: { film: film } %>
       <% end %>
     </div>
-    <%= paginate @films %>
+    <div class="pagination-desktop">
+      <%= paginate @films %>
+    </div>
+    <div class="pagination-tablet">
+      <%= paginate @films, window: 2 %>
+    </div>
+    <div class="pagination-mobile">
+      <%= paginate @films, window: 1 %>
+    </div>
   </div>
   <div class="filmline-right"></div>
 </div>
