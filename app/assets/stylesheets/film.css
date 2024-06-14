@@ -269,7 +269,11 @@
   
 }
 
-.page {
+.pagination-desktop {
+  display: flex;
+}
+
+.pagination-desktop .page {
   display: inline-block;
   width: 30px;
   height: 30px;
@@ -277,14 +281,23 @@
   color: #620606;
   background-color: #ffffff;
   text-align: center;
-  line-height: 30px;
+  line-height: 28px;
   margin-right: 10px;
 }
 
-.page:hover {
+.pagination-desktop .page:hover {
   background-color: #620606;
   color: #ffffff;
   cursor: pointer;
+}
+
+.pagination-tablet, .pagination-mobile {
+  display: none;
+}
+
+.firstpage-link, .lastpage-link {
+  font-size: 13px;
+  line-height: 13px;
 }
 
 /* showページ */
@@ -516,7 +529,39 @@ ul {
     align-items: flex-end;
     margin-bottom: 3%;
   }
+
+  .pagination-tablet {
+    display: flex;
+  }
+  .pagination-desktop, .pagination-mobile {
+    display: none;
+  }
+
+  .pagination-tablet .page {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #620606;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: 28px;
+    margin-right: 10px;
+  }
+  
+  .pagination-tablet .page:hover {
+    background-color: #620606;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  /* .firstpage-link, .lastpage-link {
+    display: inline-block;
+    text-align: center;
+    line-height: 60px;
+  } */
 }
+
 
 
 
@@ -613,5 +658,40 @@ ul {
   .film-main .text-show {
     align-items: flex-end;
     margin-bottom: 3%;
+  }
+  .pagination-mobile {
+    display: flex;
+  }
+  .pagination-desktop, .pagination-tablet {
+    display: none;
+  }
+
+  .pagination-mobile .page {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: #620606;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 8px;
+  }
+
+  .pagination-mobile .page:hover {
+    background-color: #620606;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .firstpage-link, .lastpage-link {
+    display: inline-block;
+    font-size: 11px;
+    top: 0;
+    text-align: center;
+  }
+
+  .page-link {
+    font-size: 15px;
   }
 }
