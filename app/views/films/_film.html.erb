@@ -1,6 +1,10 @@
 <%= link_to film_path(film), class: "film", data: {turbo: false} do %>
   <div class="left-show">
-    <%= image_tag(film.poster_image_url.present? && film.poster_image_url != "/global/images/jfdb_noimage.png" ? film.poster_image_url : asset_path('noimage.png'), class: "index-poster-image") %>
+    <% if film.poster_image_url.present? && film.poster_image_url != "/global/images/jfdb_noimage.png" %>
+      <%= image_tag(film.poster_image_url, class: "index-poster-image") %>
+    <% else %>
+      <%= image_tag(asset_path('noimage.png'), class: "index-poster-image noimage") %>
+    <% end %>
   </div>
   <div class="right-show">
     <div class="title-show">
