@@ -59,10 +59,14 @@
           <div class="production-section">
             <% @trailers.each do |trailer| %>
               <% if trailer.production.present? %>
-                <p><strong>制作会社 :</strong> <%= trailer.production %></p>
+                <div class="production-name">
+                  <p><strong>制作会社 :</strong> <%= trailer.production %></p>
+                </div>
               <% end %>
               <% if trailer.official_site.present? %>
-                <p><strong>公式サイト :</strong> <%= link_to trailer.official_site, trailer.official_site %></p>
+                <div class="site">
+                  <p><strong>公式サイト :</strong> <%= link_to trailer.official_site, trailer.official_site %></p>
+                </div>
               <% end %>
             <% end %>
           </div>

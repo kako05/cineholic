@@ -227,9 +227,15 @@
   display: block;
 }
 
+.film-main .index-poster-image.noimage {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
 .film-main .right-show {
-  flex: 2;
-  padding: 20px;
+  flex: 1;
+  padding: 20px 20px 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -238,14 +244,13 @@
 .film-main .title-show {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .film-main .title-show h2 {
-  font-size: 160%;
+  font-size: 150%;
   width: 80%;
-  height: 50px;
-  margin: 0;
+  margin-bottom: 5px;
+  margin-right: 5px;
   border-bottom: none;
 }
 
@@ -266,7 +271,6 @@
   -webkit-line-clamp: 3;
   margin-top: auto;
   margin-bottom: 3%;
-  
 }
 
 .pagination-desktop {
@@ -401,7 +405,7 @@
   border-top: 1px solid #a3a3a3;
 }
 
-.text-selection{
+.text-selection {
   font-size: 120%;
   line-height: 1.8;
 }
@@ -444,9 +448,18 @@ ul {
   font-weight: bold;
 }
 
+.production-name {
+  margin-bottom: 15px;
+}
+
 .production-section a {
   text-decoration: none;
   font-size: 120%;
+}
+
+.production-section a:hover {
+  color: #620606;
+  text-decoration: underline;
 }
 
 
@@ -483,18 +496,18 @@ ul {
   .film-main .film {
     width: 90%;
     margin-bottom: 3%;
-    height: auto;
+    height: 30vh;
   }
 
   .film-main .left-show {
-    height: 100%;
+    height: 30vh;
     padding: 0;
   }
 
   .film-main .index-poster-image {
-    height: 100%;
+    height: auto;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 30vh;
     object-fit: contain;
   }
 
@@ -507,27 +520,23 @@ ul {
     flex: 1;
   }
 
-  .film-main .title-show {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    min-height: 10vh;
-  }
-
   .film-main .title-show h2 {
-    width: 100%;
+    width: 80%;
     height: auto;
-    margin: 10px 0;;
+    margin: 10px;
+    font-size: 150%;
   }
 
   .film-main .release-date {
-    margin-top: auto;
-    align-self: flex-end
+    font-size: 100%;
+    margin-top: 10px;
+    margin-right: 10px;
   }
 
   .film-main .text-show {
     align-items: flex-end;
     margin-bottom: 3%;
+    font-size: 100%;
   }
 
   .pagination-tablet {
@@ -548,18 +557,69 @@ ul {
     line-height: 28px;
     margin-right: 10px;
   }
-  
+
   .pagination-tablet .page:hover {
     background-color: #620606;
     color: #ffffff;
     cursor: pointer;
   }
 
-  /* .firstpage-link, .lastpage-link {
-    display: inline-block;
-    text-align: center;
-    line-height: 60px;
-  } */
+  /* 詳細ページ */
+  .show-detail {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .show-top {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  .left-show-top {
+    width: 80%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  .right-show-top {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .right-top h2{
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+    padding: 0 20px;
+    font-size: 200%;
+    flex: 1;
+  }
+
+  .film-detail {
+    width: 85%;
+    border-top: 1px solid #a3a3a3;
+  }
+
+  .cast-and-staff {
+    flex-direction: column;
+  }
+
+  .cast-section, .staff-section {
+    width: 100%;
+    margin: 5% 0;
+  }
 }
 
 
@@ -610,7 +670,7 @@ ul {
   /* 作品一覧ページ */
   .film-main .film {
     width: 90%;
-    height: auto;
+    height: 40vh;
     margin-bottom: 5%;
     flex-direction: column;
   }
@@ -625,7 +685,7 @@ ul {
     height: 25vh;
     max-width: 100%;
     max-height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .film-main .right-show {
@@ -641,27 +701,29 @@ ul {
     display: flex;
     flex-direction: column;
     height: auto;
-    min-height: 10vh;
   }
 
   .film-main .title-show h2 {
-    width: 100%;
+    width: 80%;
     height: auto;
     margin: 10px 0;
   }
 
   .film-main .release-date {
-    margin-top: auto;
-    align-self: flex-end
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .film-main .text-show {
     align-items: flex-end;
     margin-bottom: 3%;
   }
+
   .pagination-mobile {
     display: flex;
   }
+
   .pagination-desktop, .pagination-tablet {
     display: none;
   }
@@ -693,5 +755,86 @@ ul {
 
   .page-link {
     font-size: 15px;
+  }
+
+  /* 詳細ページ */
+  .show-detail {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .show-top {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .left-show-top {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  .right-show-top {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .right-top h2{
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+    padding: 10px 10px 0 10px;
+    font-size: 150%;
+  }
+
+  .comment-link {
+    font-size: 80%;
+  }
+
+  .like-icon {
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+  }
+  .film-detail {
+    width: 85%;
+    padding: 4%;
+    border-top: 1px solid #a3a3a3;
+  }
+
+  .text-selection {
+    font-size: 85%;
+    line-height: 1.4;
+  }
+
+  .cast-and-staff {
+    flex-direction: column;
+    width: 80%;
+    padding: 4%;
+  }
+
+  .cast-section, .staff-section {
+    width: 150%;
+    margin: 5% 0;
+    font-size: 85%;
+  }
+
+  .staff-section ul li {
+    display: block;
+  }
+
+  .staff-section ul li strong::after {
+    content: '\A';
+    white-space: pre;
   }
 }
