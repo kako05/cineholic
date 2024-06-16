@@ -176,7 +176,7 @@ http://18.178.57.99
 
 # 開発環境
 ## フロントエンド
-- HTML,SCSS,JavaScript
+- HTML,CSS,JavaScript
 
 ## バックエンド
 - Ruby3.2.0, Ruby on Rails7.0.0
