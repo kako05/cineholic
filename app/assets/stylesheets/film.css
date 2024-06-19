@@ -670,7 +670,7 @@ ul {
   /* 作品一覧ページ */
   .film-main .film {
     width: 90%;
-    height: 40vh;
+    height: auto;
     margin-bottom: 5%;
     flex-direction: column;
   }
