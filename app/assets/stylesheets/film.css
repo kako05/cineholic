@@ -620,6 +620,18 @@ ul {
     width: 100%;
     margin: 5% 0;
   }
+
+  .production-name p {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+  .site p {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+  }
 }
 
 
@@ -836,5 +848,26 @@ ul {
   .staff-section ul li strong::after {
     content: '\A';
     white-space: pre;
+  }
+
+  .production-section strong {
+    font-size: 100%;
+  }
+
+  .production-section a {
+      width: 100%;
+      word-wrap: break-word;
+  }
+
+  .production-name p {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+  }
+
+  .site p {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
   }
 }
