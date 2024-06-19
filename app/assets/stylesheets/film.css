@@ -191,7 +191,7 @@
 /* showing,search 共通部分 */
 .film-main .film {
   display: flex;
-  height: 30vh;
+  height: 200px;
   background: #ebebeb;
   border-radius: 8px;
   overflow: hidden;
@@ -209,7 +209,7 @@
 
 .film-main .left-show {
   width: 30%;
-  height: 30vh;
+  height: 200px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -222,7 +222,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 30vh;
+  max-height: 200px;
   object-fit: contain;
   display: block;
 }
@@ -267,7 +267,7 @@
   color: #171717;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow-y: auto;
   -webkit-line-clamp: 3;
   margin-top: auto;
   margin-bottom: 3%;
@@ -496,18 +496,18 @@ ul {
   .film-main .film {
     width: 90%;
     margin-bottom: 3%;
-    height: 30vh;
+    height: 180px;
   }
 
   .film-main .left-show {
-    height: 30vh;
+    height: 180px;
     padding: 0;
   }
 
   .film-main .index-poster-image {
     height: auto;
     max-width: 100%;
-    max-height: 30vh;
+    max-height: 180px;
     object-fit: contain;
   }
 
@@ -537,6 +537,7 @@ ul {
     align-items: flex-end;
     margin-bottom: 3%;
     font-size: 100%;
+    overflow-y: auto;
   }
 
   .pagination-tablet {
